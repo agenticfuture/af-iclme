@@ -1,0 +1,17 @@
+change_id: CHG-001
+timestamp: 2026-02-16T18:40:00Z
+contents:
+  - artifact: change_spec.yaml
+    hash: sha256:mockhash1
+  - artifact: test_report.json
+    hash: sha256:mockhash2
+  - artifact: security_scan.json
+    hash: sha256:mockhash3
+  - artifact: privacy_report.json
+    hash: sha256:mockhash4
+  - artifact: build_manifest.yaml
+    hash: sha256:mockhash5
+deployment_evidence:
+  - deploy.status.json
+  - runtime_metrics.json
+compliance_status: compliant

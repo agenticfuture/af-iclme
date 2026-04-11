@@ -1,0 +1,17 @@
+meta:
+  artifact_type: change_spec
+
+change:
+  chg_key: CHG-013
+  idea_key: IDEA-DEP-SYNC
+  title: fix-minio-dependency-crash
+  impacted_layers:
+    - L0: Runtime & Infrastructure (API dependencies)
+    - L2: Delivery (Lock file sync)
+  required_artifacts:
+    - walkthrough.md
+  security_requirements: []
+  rollback_strategy:
+    - Revert `pyproject.toml` and re-sync.
+  success_criteria:
+    - API startup sequence completes without errors.

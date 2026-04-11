@@ -1,0 +1,28 @@
+{
+    "test_report": {
+        "chg_key": "CHG-015",
+        "status": "passed",
+        "scenarios": [
+            {
+                "name": "Prefect Flow Registration",
+                "result": "passed",
+                "details": "IngestWorkflowOrchestrator.process_bulk is successfully decorated as a @flow."
+            },
+            {
+                "name": "Sub-flow Orchestration",
+                "result": "passed",
+                "details": "Individual File and URL workflows are tracked as nested flows in Prefect."
+            },
+            {
+                "name": "Task-level Retries",
+                "result": "passed",
+                "details": "MinIO upload tasks in tasks.py include Prefect @task with 3 retries configuration."
+            },
+            {
+                "name": "Async Compatibility",
+                "result": "passed",
+                "details": "FastAPI UploadFile objects are correctly handled within the async Prefect flow context."
+            }
+        ]
+    }
+}

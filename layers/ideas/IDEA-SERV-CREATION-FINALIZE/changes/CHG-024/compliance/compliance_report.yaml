@@ -1,0 +1,16 @@
+meta:
+  artifact_type: compliance_report
+  layer: L6
+
+change_id: CHG-024
+status: passed_with_observations
+checks:
+  - name: tenant_context_propagation
+    result: passed
+    evidence: tenant/org/service identifiers included in embed URLs, widget config, and query request metadata.
+  - name: mock_data_removal_services_pages
+    result: passed
+    evidence: services and dashboard pages now call `/api/service/v1/services`.
+  - name: cors_alignment_for_bot_origin
+    result: passed
+    evidence: backend CORS now includes `https://bot.servicegen.local`.

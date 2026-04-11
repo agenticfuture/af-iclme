@@ -1,0 +1,16 @@
+# Walkthrough: CHG-SERV-001 (Create Service Specs)
+
+## 1. Research Phase
+- **Frontend Analysis**: Examined `app/dashboard/services/new/page.tsx` to understand the 5-step navigation and the `sg_service_id` reservation logic.
+- **Backend Analysis**: Examined `capabilities/service/caps/create_service` and `capabilities/job` to understand how drafts are created and ingestion jobs are enqueued.
+- **Playground Analysis**: Verified `app/dashboard/services/[id]/playground/page.tsx` for iframe vs script embed logic.
+
+## 2. Document Generation
+- Generated the requirements spec to match the actual wizard steps observed in the code.
+- Incorporated "Direct Ingest" requirements as identified in the `page.tsx` logic for unsaved sources.
+- Aligned privacy and security specs with the platform's Zero Trust and PIPEDA standards.
+
+## 3. Verification
+- All documents exist in the designated directory structure.
+- MD and YAML files are cross-valid (references match).
+- Test cases cover the identified edge cases (SSRF, cross-tenant leaks).

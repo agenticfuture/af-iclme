@@ -1,0 +1,8 @@
+post_deployment_review:
+  chg_key: CHG-006
+  outcome: success
+  learnings:
+    - critical: "Always import database models in API entry points to populate SQLAlchemy metadata."
+    - improvement: "Automate model discovery to avoid future NoReferencedTableError."
+  recommendations:
+    - implement a base model registry

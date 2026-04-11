@@ -1,0 +1,58 @@
+AGENT-1:
+
+   ROLE: 
+   OBJECTIVE: 
+
+   INPUT:
+    - IDEA-NAME=logout_tenant
+    - docs at:
+        - ./af-iclme/layers/ideas/{IDEA-NAME}/requirements_spec.md
+        - ./af-iclme/layers/ideas/{IDEA-NAME}/requirements_spec.yml
+        - ./af-iclme/layers/ideas/{IDEA-NAME}/requirements_test_cases.md
+        - ./af-iclme/layers/ideas/{IDEA-NAME}/requirements_test_cases.yml   
+        - ./af-iclme/layers/ideas/{IDEA-NAME}/privacy_spec.md
+        - ./af-iclme/layers/ideas/{IDEA-NAME}/privacy_spec.yml
+        - ./af-iclme/layers/ideas/{IDEA-NAME}/privacy_test_cases.md
+        - ./af-iclme/layers/ideas/{IDEA-NAME}/privacy_test_cases.yml
+        - ./af-iclme/layers/ideas/{IDEA-NAME}/security_spec.md
+        - ./af-iclme/layers/ideas/{IDEA-NAME}/security_spec.yml
+        - ./af-iclme/layers/ideas/{IDEA-NAME}/security_test_cases.md
+        - ./af-iclme/layers/ideas/{IDEA-NAME}/security_test_cases.yml
+        - ./af-iclme/layers/ideas/{IDEA-NAME}/risks_spec.md
+        - ./af-iclme/layers/ideas/{IDEA-NAME}/risks_spec.yml
+        - ./af-iclme/layers/ideas/{IDEA-NAME}/risks_test_case.md
+        - ./af-iclme/layers/ideas/{IDEA-NAME}/risks_test_case.yml
+    
+
+
+   OUTPUT:
+   following docs:
+   section 1:
+    - workflow.md
+    - workflow.yml
+       
+   section 2: additional relevant artifacts:
+    - prompts file used.
+    - change file describing the changes
+    - walkthrough file on how the output was obtained
+
+
+
+
+   TASKS/INSTRUCTIONS
+
+    - generate based on the input documents (linked to the system) provided, the workflow that 
+    will match fully all the reqs and spec defined in the docs (section1) and 
+    pass all the tests defined in them (section1)
+    focusing on the : {IDEA-NAME} requirement.
+   
+        
+    - save all the docs of section 1  under 
+      - ./af-iclme/layers/ideas/{IDEA-NAME}/
+    
+    - save all the docs of section 2  under:
+      - the prompt used (the contain of this file) under : ./af-iclme/layers/ideas/{IDEA-NAME}/changes/CHG-<id>/prompts-<id>
+      - the change file description under (it must contain the id, the name and the description of the change plus anyother relevant information): ./af-iclme/layers/ideas/{IDEA-NAME}/changes/CHG-<id>/change-<id>
+      - the walkthrough under: ./af-iclme/layers/ideas/{IDEA-NAME}/changes/CHG-<id>/walkthrough-<id>
+
+

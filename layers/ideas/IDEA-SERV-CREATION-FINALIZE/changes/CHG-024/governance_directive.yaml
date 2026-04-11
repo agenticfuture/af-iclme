@@ -1,0 +1,25 @@
+meta:
+  artifact_type: governance_directive
+  layer: L7
+
+risk_assessment:
+  level: medium
+
+constraints:
+  - preserve_wizard_id_generation_steps
+  - enforce_context_scoping_via_tenant_org_service_ids
+  - avoid_cross_tenant_data_exposure
+
+approvals:
+  required: true
+  approvers:
+    - frontend_owner
+    - backend_owner
+
+autonomy_scope:
+  allowed_layers:
+    - L1
+    - L2
+    - L3
+    - L5
+  max_risk: medium

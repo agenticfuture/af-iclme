@@ -1,0 +1,26 @@
+meta:
+  artifact_type: idea
+
+idea:
+  idea_key: IDEA-SERV-FIX-DETAIL
+  title: Fix ServiceDetailPage and Finalize Bot Creation Flow
+  description: Fix the negative time stamp error in ServiceDetailPage, ensure service/bot IDs are preserved, and implement clean deployment with embeddings in Qdrant and DB storage.
+  domains:
+    - product
+    - AI
+    - frontend
+    - backend
+  types:
+    - bugfix
+    - feature
+  priority: high
+  initial_risk: medium
+  spiral_stage: IDEA
+
+success_metrics:
+  - metric: error_resolution
+    target: "ServiceDetailPage renders without performance.measure error"
+  - metric: bot_deployment
+    target: "Bot successfully deployed at bot.servicegen.local"
+  - metric: data_ingestion
+    target: "Data sources embedded and stored in Qdrant with correct IDs"

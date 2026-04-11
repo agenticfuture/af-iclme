@@ -1,0 +1,21 @@
+meta:
+  artifact_type: change_spec
+
+change:
+  chg_key: CHG-007
+  idea_key: IDEA-INTEGRITY-FIX
+  title: Seed Default Tenant and Organization
+  impacted_layers:
+    - L4: Data & Privacy (DB seeding)
+    - L0: Runtime & Infrastructure (bootstrap)
+  required_artifacts:
+    - change_spec.yaml
+    - design_doc.md
+    - seed_default.py
+  security_requirements:
+    - none (dev data only)
+  rollback_strategy:
+    - delete rows from core.tenants/organizations where id='...0001'
+  success_criteria:
+    - `00000000-0000-0000-0000-000000000001` exists in DB
+    - `/api/service/services` succeeds

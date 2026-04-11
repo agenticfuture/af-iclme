@@ -1,0 +1,11 @@
+id: risks-test-case-login-tenant
+title: Risk Test Cases - Tenant Login
+test_cases:
+  - id: TC-RISK-LOGIN-001
+    mitigates: RISK-SEC-2026-LOG-001
+  - id: TC-RISK-LOGIN-002
+    mitigates: RISK-SEC-2026-LOG-002
+  - id: TC-RISK-LOGIN-003
+    mitigates: RISK-SEC-2026-LOG-003
+  - id: TC-RISK-LOGIN-004
+    mitigates: RISK-PRIV-2026-LOG-004

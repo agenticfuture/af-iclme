@@ -1,0 +1,15 @@
+id: security-test-cases-logout-tenant
+title: Security Test Cases - Tenant Logout
+test_cases:
+  - id: TC-SEC-LOGOUT-001
+    title: Token Revocation
+    type: negative
+  - id: TC-SEC-LOGOUT-002
+    title: CSRF Mitigation
+    type: negative
+  - id: TC-SEC-LOGOUT-003
+    title: Open Redirect Prevention
+    type: negative
+  - id: TC-SEC-LOGOUT-004
+    title: Cookie Residual Search
+    type: positive

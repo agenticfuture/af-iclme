@@ -1,0 +1,10 @@
+{
+    "scan_id": "SCAN-SERV-001",
+    "targets": [
+        "capabilities/service",
+        "ui-apps/service-gen-saas"
+    ],
+    "vulnerabilities": [],
+    "status": "passed",
+    "timestamp": "2026-02-16T17:46:00Z"
+}

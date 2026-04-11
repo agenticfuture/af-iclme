@@ -1,0 +1,79 @@
+workflow_id: WF-TENANT-REG-001
+name: tenant_registration
+pattern: saga_orchestrator
+
+states:
+  - START
+  - RegistrationRequested
+  - InputValidated
+  - RateLimitValidated
+  - BotProtectionValidated
+  - ConsentValidated
+  - TenantPersisted
+  - AdminUserPersisted
+  - PoliciesBound
+  - GovernanceRegistered
+  - AuditLogged
+  - EventEmitted
+  - PendingEmailVerification
+  - END
+
+injection_points:
+  api_boundary:
+    - request_validation
+    - rate_limit
+    - bot_protection
+    - correlation_id
+    - idempotency_key
+  pre_persistence:
+    - consent_ledger_write
+    - pii_classification
+    - tenant_isolation_guard
+    - encryption_enforcement
+  post_state:
+    - audit_log
+    - risk_scoring
+    - evidence_capture
+  event_emission:
+    - event_signing
+    - idempotency_validation
+    - replay_protection
+
+event:
+  name: TenantRegistered
+  signed: true
+  sequence_number_required: true
+  correlation_id_required: true
+
+idempotency:
+  key_strategy: hash(email + time_bucket)
+  duplicate_action: reject
+
+failure_handling:
+  rollback_partial_tenant: true
+  emit_failure_event: true
+  log_failure: true
+
+compliance:
+  soc2:
+    - CC1
+    - CC6
+    - CC7
+  iso27701:
+    - A.7.2.1
+    - A.7.2.4
+  pipeda:
+    - consent
+    - safeguards
+    - accountability
+
+test_coverage:
+  functional:
+    - TC-TR-REQ-001
+  privacy:
+    - TC-TR-PRIV-001
+  security:
+    - TC-TR-SEC-001
+    - TC-TR-SEC-002
+  risk:
+    - TC-TR-RISK-001

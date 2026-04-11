@@ -1,0 +1,15 @@
+id: privacy-test-cases-login-tenant
+title: Privacy Test Cases - Tenant Login
+test_cases:
+  - id: TC-PR-LOGIN-001
+    title: PII Masking
+    automated: true
+  - id: TC-PR-LOGIN-002
+    title: Retention Check
+    automated: true
+  - id: TC-PR-LOGIN-003
+    title: Consent Verification
+    automated: false
+  - id: TC-PR-LOGIN-004
+    title: Plaintext Password Search
+    automated: true

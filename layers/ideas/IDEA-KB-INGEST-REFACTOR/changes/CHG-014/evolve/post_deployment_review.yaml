@@ -1,0 +1,6 @@
+post_deployment_review:
+  chg_key: CHG-014
+  outcome: success
+  learnings:
+    - "Dynamic workflow resolution allows for cleaner API routes that don't need to change as new data sources are added."
+    - "Binary matching by filename is a robust way to bridge JSON metadata and binary body parts in multipart requests."

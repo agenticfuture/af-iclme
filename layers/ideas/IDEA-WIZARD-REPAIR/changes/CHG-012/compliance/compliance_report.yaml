@@ -1,0 +1,6 @@
+compliance_report:
+  chg_key: CHG-012
+  controls_verified:
+    - ID: UX-ST-002
+      status: compliant
+      evidence: "Service creation session is resilient to browser navigation/refresh."

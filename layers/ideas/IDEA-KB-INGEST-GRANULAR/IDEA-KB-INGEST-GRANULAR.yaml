@@ -1,0 +1,22 @@
+meta:
+  artifact_type: idea
+
+idea:
+  idea_key: IDEA-KB-INGEST-GRANULAR
+  title: Granular Ingestion API & Frontend Validation
+  description: Pivot from a generic bulk ingestion endpoint to type-specific endpoints (/file, /url) coordinated by the client. Fixes storage reliability and adds UI-level validation.
+  domains:
+    - Knowledge Base
+    - API Design
+    - DX
+  types:
+    - refactor
+    - feature
+  priority: high
+  spiral_stage: IDEA
+
+success_metrics:
+  - metric: reliability
+    target: "Successful file uploads visible in MinIO UI."
+  - metric: UX
+    target: "Wizard 'Next' button enablement correctly reflects data source validity."

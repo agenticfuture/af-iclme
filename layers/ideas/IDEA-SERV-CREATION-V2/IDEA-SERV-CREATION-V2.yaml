@@ -1,0 +1,27 @@
+meta:
+  artifact_type: idea
+
+idea:
+  idea_key: IDEA-SERV-CREATION-V2
+  title: End-to-End Service Creation Flow (Fix & Backend)
+  description: Correct the frontend wizard to hit the backend caps/create_service. Manage service/chatbot IDs in Step 1/2 and deploy on Finish. Fix SQLAlchemy NoReferencedTableError.
+  prompt_id: 10
+  prompt_refs:
+    - /Users/franck/Documents/projects/ServiceGenMeta/ServiceGen/af-iclme/execution-plans/prompts_input/exe_plan_template_prompt.md
+  prompt_description: Correct create-service flow frontend and complete backend to DB.
+  domains:
+    - service
+    - product
+    - AI
+  types:
+    - feature
+    - bugfix
+  priority: high
+  initial_risk: high
+  spiral_stage: IDEA
+
+success_metrics:
+  - metric: database_integrity
+    target: "No NoReferencedTableError on startup"
+  - metric: wizard_completion
+    target: "100% successful redirection to playground after Step 5"

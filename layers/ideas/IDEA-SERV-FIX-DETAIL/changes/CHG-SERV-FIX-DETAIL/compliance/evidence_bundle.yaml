@@ -1,0 +1,13 @@
+evidence:
+  - id: EVI-QA-001
+    type: test_report
+    path: ../QA/test_report.json
+    status: verified
+  - id: EVI-SEC-001
+    type: security_scan
+    path: ../security/security_scan.json
+    status: clean
+  - id: EVI-DEPLOY-001
+    type: deploy_success
+    path: ../delivery/deploy.status.json
+    status: confirmed

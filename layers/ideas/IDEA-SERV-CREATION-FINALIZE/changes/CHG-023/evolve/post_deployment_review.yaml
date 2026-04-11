@@ -1,0 +1,9 @@
+meta:
+  artifact_type: post_deployment_review
+  layer: L8
+
+change_id: CHG-023
+observations:
+  - Tenant testing starts faster by landing directly in playground.
+next_improvements:
+  - Optionally add toast confirmation before redirect.

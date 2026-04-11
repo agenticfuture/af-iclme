@@ -1,0 +1,9 @@
+meta:
+  artifact_type: runtime_metrics
+  layer: L0
+
+metrics:
+  error_rate: 0.2
+  latency_p95: 210
+  cpu_usage: 45
+status: healthy

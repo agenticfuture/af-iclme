@@ -1,0 +1,10 @@
+change_spec:
+  id: "CHG-005"
+  name: "Service Creation Backend & Frontend Integration"
+  objectives:
+    - "Implement caps/create_service backend"
+    - "Fix syntax error in page.tsx"
+    - "Integrate ID flow in wizard"
+  impact:
+    - "Database schema (Service/Chatbot tables)"
+    - "Frontend dashboard"

@@ -1,0 +1,23 @@
+meta:
+  artifact_type: governance_directive
+  layer: L7
+
+risk_assessment:
+  level: medium
+  data_sensitivity: pii_aware
+  impact: product_integrity
+
+constraints:
+  - require_security_check_on_bot_deployment
+  - ensure_qdrant_isolation
+  - validate_service_ids
+
+approvals:
+  required: false
+  autonomy_scope:
+    allowed_layers:
+      - L1
+      - L2
+      - L3
+      - L4
+    max_risk: medium

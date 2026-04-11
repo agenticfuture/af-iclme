@@ -1,0 +1,12 @@
+meta:
+  artifact_type: governance_directive
+
+governance:
+  chg_key: CHG-013
+  risk_level: low
+  approvals_required:
+    - SRE
+  autonomy_scope:
+    - dependency_management
+  compliance_controls: []
+  audit_requirements: []

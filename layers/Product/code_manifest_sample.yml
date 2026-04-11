@@ -1,0 +1,8 @@
+meta:
+  artifact_type: code_manifest
+  layer: L1
+
+commit_hash: abc123
+files_modified:
+  - src/summarizer.py
+  - tests/test_summarizer.py

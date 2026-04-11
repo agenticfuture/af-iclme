@@ -1,0 +1,28 @@
+meta:
+  artifact_type: change_spec
+  layer: L8
+
+change:
+  change_key: CHG-023
+  description: Redirect service creation Finish action to newly deployed bot playground for immediate tenant testing.
+  affected_layers:
+    - L1
+    - L3
+    - L6
+    - L7
+    - L8
+
+requirements:
+  functional:
+    - After successful deploy, redirect to `/dashboard/services/{serviceId}/playground`.
+    - Keep step 1 (service creation) and step 2 (chatbot creation) logic unchanged.
+  non_functional:
+    - No backend contract changes.
+    - Keep onboarding status UX unchanged.
+
+required_tests:
+  - Verify finish handler redirect target.
+  - Verify step 1/2 creation code blocks remain.
+
+success_criteria:
+  - Finish now lands user on bot playground route for testing.

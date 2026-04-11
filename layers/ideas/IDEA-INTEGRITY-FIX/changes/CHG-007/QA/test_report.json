@@ -1,0 +1,12 @@
+{
+    "test_report": {
+        "chg_key": "CHG-007",
+        "status": "passed",
+        "scenarios": [
+            {
+                "name": "Step 1: Service Creation (Integrity Check)",
+                "result": "passed"
+            }
+        ]
+    }
+}

@@ -1,0 +1,13 @@
+meta:
+  artifact_type: governance_directive
+
+governance:
+  chg_key: CHG-017
+  risk_level: medium
+  approvals_required:
+    - tech_lead
+  autonomy_scope:
+    - container_side_dependency_management
+  compliance_controls:
+    - ID: DEPS-001
+      description: "Container dependencies must be synchronized via UV to match the host pyproject.toml."

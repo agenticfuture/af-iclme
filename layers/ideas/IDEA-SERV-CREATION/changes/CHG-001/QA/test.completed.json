@@ -1,0 +1,6 @@
+{
+    "event": "test.completed",
+    "change_id": "CHG-001",
+    "status": "success",
+    "timestamp": "2026-02-16T17:45:05Z"
+}

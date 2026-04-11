@@ -1,0 +1,15 @@
+meta:
+  artifact_type: governance_directive
+
+governance:
+  chg_key: CHG-008
+  risk_level: medium
+  approvals_required:
+    - product_manager
+  autonomy_scope:
+    - wizard_ui_logic
+    - persistence_handshake
+  compliance_controls:
+    - tenant_isolation_check
+  audit_requirements:
+    - log_all_creation_steps

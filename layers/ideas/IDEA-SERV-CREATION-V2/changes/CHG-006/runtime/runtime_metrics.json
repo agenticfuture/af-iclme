@@ -1,0 +1,7 @@
+{
+    "runtime_metrics": {
+        "api_availability": 100.0,
+        "p99_latency_ms": 150,
+        "error_rate": 0.0
+    }
+}

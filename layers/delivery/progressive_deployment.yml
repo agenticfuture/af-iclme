@@ -1,0 +1,9 @@
+meta:
+  artifact_type: deployment_strategy
+  layer: L2
+
+strategy: canary
+initial_traffic: 10%
+guard_metrics:
+  error_rate: <1%
+  latency: <300ms

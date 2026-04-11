@@ -1,0 +1,60 @@
+AGENT-1:
+
+   ROLE: 
+   OBJECTIVE: 
+
+   INPUT:
+    - docs at:
+        - ./af-iclme/layers/product/system_requirements/ServiceGen_BRD_v.0.9.0.md
+        - ./af-iclme/layers/product/system_requirements/ServiceGen_BRD_v.0.9.0.yml
+        - ./af-iclme/layers/privacy/privacy_system_spec_reqs.yml
+        - ./af-iclme/layers/privacy/privacy-test-cases.yml
+        - ./af-iclme/layers/security/security_system__specs.yml
+        - ./af-iclme/layers/security/security_test_case_specs.md
+        - ./af-iclme/layers/governance/ServiceGen-Risk-Register-Template.md
+    - IDEA-NAME=login_tenant
+
+
+   OUTPUT:
+   following docs:
+   section 1:
+    - requirements_spec.md
+    - requirements_spec.yml
+    - requirements_test_cases.md
+    - requirements_test_cases.yml   
+    - privacy_spec.md
+    - privacy_spec.yml
+    - privacy_test_cases.md
+    - privacy_test_cases.yml
+    - security_spec.md
+    - security_spec.yml
+    - security_test_cases.md
+    - security_test_cases.yml
+    - risks_spec.md
+    - risks_spec.yml
+    - risks_test_case.md
+    - risks_test_case.yml
+   
+   section 2: additional relevant artifacts:
+    - prompts file used.
+    - change file describing the changes
+    - walkthrough file on how the output was obtained
+
+
+
+
+   TASKS/INSTRUCTIONS
+
+    - generate based on the input documents (linked to the system) provided, the list of expected docs (in section 1) described in the output section
+    focusing on the : {IDEA-NAME} requirement.
+   
+        
+    - save all the docs of section 1  under 
+      - ./af-iclme/layers/ideas/{IDEA-NAME}/
+    
+    - save all the docs of section 2  under:
+      - the prompt used (the contain of this file) under : ./af-iclme/layers/ideas/{IDEA-NAME}/changes/CHG-<id>/prompts-<id>
+      - the change file description under (it must contain the id, the name and the description of the change plus anyother relevant information): ./af-iclme/layers/ideas/{IDEA-NAME}/changes/CHG-<id>/change-<id>
+      - the walkthrough under: ./af-iclme/layers/ideas/{IDEA-NAME}/changes/CHG-<id>/walkthrough-<id>
+
+

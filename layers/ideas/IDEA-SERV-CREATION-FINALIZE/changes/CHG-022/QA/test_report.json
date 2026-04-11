@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "artifact_type": "test_report",
+    "layer": "L3",
+    "change_id": "CHG-022"
+  },
+  "results": {
+    "params_promise_unwrap_fix": "passed",
+    "service_route_scan": "passed",
+    "wizard_create_sections_preserved": "passed"
+  },
+  "notes": [
+    "ServiceDetails route now awaits params before reading id.",
+    "No wizard step 1/2 create service/chatbot removal detected."
+  ]
+}

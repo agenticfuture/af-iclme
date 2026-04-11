@@ -1,0 +1,17 @@
+meta:
+  artifact_type: test_definitions
+  layer: L3
+  change_ref: CHG-001
+
+tests:
+  frontend_manual:
+    - Verify "Coming Soon" badge on Actions step.
+    - Verify "Coming Soon" badge on Human Agent step.
+    - Verify "Coming Soon" badge on specific Channels.
+    - Verify auto-save triggers when clicking "Next".
+    - Verify final submission redirects to dashboard.
+  
+  backend_unit:
+    - Test POST /onboard/service with valid data.
+    - Test POST /onboard/service with missing fields.
+    - Test service persistence in DB.

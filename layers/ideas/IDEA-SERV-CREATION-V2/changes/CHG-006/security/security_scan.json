@@ -1,0 +1,7 @@
+{
+    "security_scan": {
+        "chg_key": "CHG-006",
+        "vulnerabilities": [],
+        "status": "clean"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "deploy_status": "success",
+    "chg_key": "CHG-006",
+    "events": [
+        "deploy.started",
+        "deploy.success"
+    ],
+    "timestamp": "2026-02-17T18:26:00Z"
+}

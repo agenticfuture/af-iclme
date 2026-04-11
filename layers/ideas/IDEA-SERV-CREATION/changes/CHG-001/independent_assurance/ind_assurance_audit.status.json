@@ -1,0 +1,7 @@
+{
+    "event": "audit.completed",
+    "audit_id": "AUDIT-SERV-001",
+    "change_id": "CHG-001",
+    "result": "pass",
+    "timestamp": "2026-02-16T18:45:05Z"
+}

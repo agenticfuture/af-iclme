@@ -1,0 +1,6 @@
+post_deployment_review:
+  chg_key: CHG-017
+  outcome: success
+  learnings:
+    - "Container side dependency management via UV is more reliable than manual pip installs in this environment."
+    - "Silent NameErrors in reloaded code can mask connectivity issues; explicit diagnostics are essential."

@@ -1,0 +1,27 @@
+meta:
+  artifact_type: test_plan
+  layer: L3
+
+tests:
+  - id: TEST-FE-001
+    title: Fix ServiceDetailPage Performance Error
+    type: browser
+    steps:
+      - Navigate to /dashboard/services/[id]
+      - Check browser console for "negative time stamp" error.
+  
+  - id: TEST-BE-001
+    title: Bot Deployment Flow
+    type: integration
+    steps:
+      - Mock wizard submission
+      - Verify /deploy endpoint return 200
+      - Verify bot is reachable at bot.servicegen.local (host mapping required)
+
+  - id: TEST-DATA-001
+    title: Qdrant Retrieval Isolation
+    type: integration
+    steps:
+      - Ingest data for Service A
+      - Ingest data for Service B
+      - Query Service A and ensure Service B data is NOT returned.

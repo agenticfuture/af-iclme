@@ -1,0 +1,15 @@
+meta:
+  artifact_type: dpia_report
+  layer: L4
+
+data_processed:
+  - uploaded_documents
+  - website_urls
+  - system_prompts
+
+pii_detected: possible (within documents)
+mitigation:
+  - multi-tenant isolation in Qdrant
+  - backend filtering of PII (future)
+retention_policy: persistent (as long as service exists)
+status: approved

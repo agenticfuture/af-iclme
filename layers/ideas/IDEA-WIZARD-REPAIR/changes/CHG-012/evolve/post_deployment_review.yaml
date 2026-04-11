@@ -1,0 +1,6 @@
+post_deployment_review:
+  chg_key: CHG-012
+  outcome: success
+  learnings:
+    - "React side-effects must reside in useEffect, never in useState initializers for reliable cross-state updates."
+    - "State initializers are the preferred way to rehydrate state from sync stores like sessionStorage."

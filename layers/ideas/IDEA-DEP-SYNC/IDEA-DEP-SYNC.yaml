@@ -1,0 +1,20 @@
+meta:
+  artifact_type: idea
+
+idea:
+  idea_key: IDEA-DEP-SYNC
+  title: Resolve "ModuleNotFoundError minio" Crash
+  description: Sync the backend environment after adding new dependencies to ensure the API is operational.
+  domains:
+    - DevOps
+    - Infrastructure
+  types:
+    - bugfix
+    - operational
+  priority: critical
+  initial_risk: medium
+  spiral_stage: IDEA
+
+success_metrics:
+  - metric: api_health
+    target: "Backend API starts without ModuleNotFoundError."

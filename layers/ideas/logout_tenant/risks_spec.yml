@@ -1,0 +1,27 @@
+id: risks-spec-logout-tenant
+title: Risk Specification - Tenant Logout
+risks:
+  - id: RISK-SEC-2026-LOGO-001
+    title: Session Persistence
+    category: Security
+    inherent_score: 20
+    mitigations: [JTI-Blacklisting, Storage-Purge]
+    residual_score: 4
+  - id: RISK-SEC-2026-LOGO-002
+    title: Malicious Logout (CSRF)
+    category: Security
+    inherent_score: 8
+    mitigations: [Anti-CSRF-Tokens]
+    residual_score: 2
+  - id: RISK-SEC-2026-LOGO-003
+    title: Open Redirect
+    category: Security
+    inherent_score: 10
+    mitigations: [Redirect-Whitelisting]
+    residual_score: 2
+  - id: RISK-PRIV-2026-LOGO-004
+    title: PII in Logs
+    category: Privacy
+    inherent_score: 6
+    mitigations: [Log-Masking]
+    residual_score: 1

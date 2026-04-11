@@ -1,0 +1,14 @@
+meta:
+  artifact_type: governance_directive
+
+governance:
+  chg_key: CHG-018
+  risk_level: medium
+  approvals_required:
+    - tech_lead
+  autonomy_scope:
+    - api_contract_design
+    - ui_validation_logic
+  compliance_controls:
+    - ID: VALIDATE-IN-001
+      description: "All ingestion inputs MUST be validated before backend processing."

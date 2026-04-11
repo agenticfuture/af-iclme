@@ -1,0 +1,27 @@
+id: risks-spec-login-tenant
+title: Risk Specification - Tenant Login
+risks:
+  - id: RISK-SEC-2026-LOG-001
+    title: Credential Theft
+    category: Security
+    inherent_score: 20
+    mitigations: [MFA, Rate-Limiting, Lockout]
+    residual_score: 4
+  - id: RISK-SEC-2026-LOG-002
+    title: Session Hijacking
+    category: Security
+    inherent_score: 15
+    mitigations: [HTTPS, Short-lived-JWT, Secure-Cookies]
+    residual_score: 6
+  - id: RISK-SEC-2026-LOG-003
+    title: Cross-Tenant Leakage
+    category: Security
+    inherent_score: 25
+    mitigations: [RLS, JWT-Validation]
+    residual_score: 5
+  - id: RISK-PRIV-2026-LOG-004
+    title: PII in Logs
+    category: Privacy
+    inherent_score: 9
+    mitigations: [PII-Masking]
+    residual_score: 3

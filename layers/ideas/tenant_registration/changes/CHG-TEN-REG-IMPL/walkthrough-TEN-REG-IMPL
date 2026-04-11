@@ -1,0 +1,92 @@
+# Tenant Registration Implementation - Consolidated Walkthrough (CHG-TEN-REG-IMPL)
+
+## Scope
+
+This file consolidates the implementation execution performed across phases `ph1` to `ph12` for `tenant_registration`.
+
+Detailed phase logs remain in:
+
+- `af-iclme/layers/ideas/tenant_registration/IP/walkthrough_ph1.md`
+- `...`
+- `af-iclme/layers/ideas/tenant_registration/IP/walkthrough_ph12.md`
+
+## Phase Summary
+
+1. **Phase 1**
+- Created tenant domain scaffold:
+  - object-based factory (`TenantDomain`)
+  - cross-domain facade (`tenant_domain_api`)
+  - contracts/shared utils/DB adapter scaffold
+- Added initial unit tests and validated imports/syntax
+
+2. **Phase 2**
+- Added tenant caps (register/status/resend/purge) skeletons
+- Added in-memory registration persistence path
+- Added tenant domain migration draft
+- Validated unit tests and route smoke checks
+
+3. **Phase 3-6**
+- Added webhook verification cap flow
+- Mounted tenant routes into real API runtime (`app/ingress/api/main.py`)
+- Wired SaaS onboarding server actions to tenant API
+- Validated live route access in `service-gen-api`
+
+4. **Phase 7**
+- Added SQL-backed tenant registration store (`TenantRegistrationSqlStore`)
+- Real API runtime switched to SQLAlchemy backend
+- Validated DB persistence for registration/evidence rows
+
+5. **Phase 8**
+- Added DB-backed core identity projection repository
+- Persisted tenant/org/user/user_pii during registration flow
+- Validated projection rows in DB and activation updates
+
+6. **Phase 9-10**
+- Hardened OPA adapter (real HTTP mode + fail-closed support)
+- Hardened Keycloak adapter (real admin token + user/group provisioning)
+- Wired real OPA + Keycloak in `docker-compose.generated.yml`
+- Validated real adapter behavior and live registration flow with real Keycloak UUID persistence
+
+7. **Phase 11**
+- Added webhook replay receipt persistence/enforcement
+- Added UserPII encryption utility + encryption test
+- Added real-mode adapter integration tests
+- Validated duplicate webhook replay returns `409`
+
+8. **Phase 12**
+- Added Playwright e2e harness for SaaS onboarding
+- Added reusable `playwright-test` Docker compose service
+- Moved all runner-specific assets under `vendor/playwright-test`
+- Validated e2e onboarding flow passes via `playwright-test`
+
+## Validation Commands (Key)
+
+### API unit tests (tenant)
+```bash
+docker exec service-gen-api sh -lc 'cd /app && PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /app/.venv/bin/python -m pytest capabilities/tenant/tests/unit -q'
+```
+
+### API real adapter integration tests (OPA + Keycloak)
+```bash
+docker exec service-gen-api sh -lc 'cd /app && TENANT_RUN_REAL_ADAPTER_TESTS=1 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /app/.venv/bin/python -m pytest capabilities/tenant/tests/integration/test_real_adapters_local.py -q'
+```
+
+### Playwright runner startup
+```bash
+docker compose -f docker-compose.generated.yml up -d --force-recreate playwright-test
+docker logs -f playwright-test
+```
+
+### SaaS onboarding e2e via runner
+```bash
+docker exec playwright-test sh -lc 'cd /work && export NODE_PATH=$(npm root -g) && playwright test tests/e2e/tenant-onboarding.spec.ts --reporter=line'
+```
+
+## Final Outcome
+
+- Tenant registration flow is implemented and runnable in local Docker.
+- Core tenant projection and registration evidence persist in Postgres.
+- Real OPA and Keycloak admin integration paths are validated.
+- SaaS onboarding server actions are integrated with tenant-domain API.
+- Playwright onboarding e2e passes through reusable `playwright-test` service.
+

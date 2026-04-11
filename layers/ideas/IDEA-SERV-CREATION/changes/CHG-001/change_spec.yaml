@@ -1,0 +1,49 @@
+meta:
+  artifact_id: CHG-001
+  artifact_type: change_spec
+  layer: L2
+  idea_ref: IDEA-SERV-CREATION
+  timestamp: 2026-02-16T17:35:00Z
+
+change:
+  title: Implement Service Creation Flow
+  type: feature
+  impacted_layers:
+    - L1 (Product)
+    - L2 (Delivery)
+    - L3 (QA)
+    - L6 (Compliance)
+  
+  backend:
+    - capabilities/service/caps/onboard/api.py: Implement POST /onboard/service
+    - capabilities/service/factory.py: Create factory to mount service domain
+    - app/ingress/api/main.py: Uncomment mount_service_domain
+  
+  frontend:
+    - app/dashboard/services/new/page.tsx:
+      - Add "Coming Soon" tags to Actions, Channel configuration, Human Agent sections
+      - Implement auto-save trigger on step change
+      - Ensure API call matches backend endpoint
+
+requirements:
+  security:
+    - Ensure authentication middleware protects the endpoint (L5)
+    - Validate input data to prevent injection
+  
+  privacy:
+    - If user data (PII) is involved in agents, ensure it's handled securely (L4)
+  
+  testing:
+    - Unit test for onboard API (L3)
+    - Manual verification of "Coming Soon" tags
+    - Manual verification of successful service creation
+
+rollback_strategy:
+  - Revert main.py changes
+  - Delete created files if necessary
+  - Frontend feature flag (optional, but likely direct code revert for now)
+
+success_criteria:
+  - Service is created in DB and visible in dashboard list.
+  - "Coming Soon" tags are visible.
+  - No data loss during step navigation.

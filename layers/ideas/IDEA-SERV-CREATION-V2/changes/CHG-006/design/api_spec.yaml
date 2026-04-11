@@ -1,0 +1,45 @@
+openapi: 3.0.0
+info:
+  title: Service Creation API
+  version: 1.0.0
+paths:
+  /api/service/services:
+    post:
+      summary: Create service draft
+      responses:
+        200:
+          description: Service created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  service_id: {type: string, format: uuid}
+  /api/service/services/{id}/chatbot:
+    post:
+      summary: Create chatbot for service
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: {type: string, format: uuid}
+      responses:
+        200:
+          description: Chatbot created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  chatbot_id: {type: string, format: uuid}
+  /api/service/services/{id}/deploy:
+    post:
+      summary: Deploy service
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: {type: string, format: uuid}
+      responses:
+        200:
+          description: Deployment triggered

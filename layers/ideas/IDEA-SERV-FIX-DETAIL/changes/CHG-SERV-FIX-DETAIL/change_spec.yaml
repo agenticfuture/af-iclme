@@ -1,0 +1,43 @@
+meta:
+  artifact_id: CHG-SERV-FIX-DETAIL
+  artifact_type: change_spec
+  layer: L2
+  idea_ref: IDEA-SERV-FIX-DETAIL
+  timestamp: 2026-02-18T10:05:00Z
+
+change:
+  title: Fix ServiceDetailPage and Finalize Bot Creation Flow
+  type: bugfix+feature
+  impacted_layers:
+    - L1 (Product)
+    - L2 (Delivery)
+    - L3 (QA)
+    - L4 (Data & Privacy)
+  
+  backend:
+    - capabilities/embeddings/embed_store_qdrant: Ensure embedding flow uses service/bot IDs correctly for isolation.
+    - capabilities/service/caps/onboard/api.py: Ensure deployment flow stores all metadata in DB.
+  
+  frontend:
+    - ui-apps/service-gen-saas/app/dashboard/services/[id]/page.tsx: Fix the negative time stamp performance error.
+    - ui-apps/service-gen-saas/app/dashboard/services/new/page.tsx: Ensure serviceId and chatbotId are correctly preserved and used in the final step.
+
+requirements:
+  security:
+    - Ensure Qdrant collections or points are tagged with tenant/service IDs (L5).
+  
+  privacy:
+    - Ensure data sources are embedded securely and stored with isolation (L4).
+  
+  testing:
+    - Verify ServiceDetailPage renders without error in browser.
+    - Verify successful embedding and retrieval in Qdrant (L3).
+
+rollback_strategy:
+  - Revert frontend changes in `[id]/page.tsx`.
+  - Revert changes to onboarding API.
+
+success_criteria:
+  - "ServiceDetailPage" console is clean of performance errors.
+  - Bot is configured with correct context from Qdrant.
+  - Deployment flow is "clean and clear" as requested.

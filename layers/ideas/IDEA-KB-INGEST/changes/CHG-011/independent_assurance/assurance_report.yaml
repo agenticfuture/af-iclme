@@ -1,0 +1,6 @@
+assurance_report:
+  chg_key: CHG-011
+  verifiers:
+    - Antigravity AI
+  summary: "Structured multi-type Knowledge Base Ingestion successfully integrated into the service creation wizard."
+  conclusion: "System is ready for large-scale knowledge ingestion."

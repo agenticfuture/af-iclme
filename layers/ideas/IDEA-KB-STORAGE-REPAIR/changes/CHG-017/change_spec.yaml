@@ -1,0 +1,14 @@
+meta:
+  artifact_type: change_spec
+
+change:
+  chg_key: CHG-017
+  idea_key: IDEA-KB-STORAGE-REPAIR
+  title: Advanced-storage-and-dependency-repair
+  impacted_layers:
+    - L0: Runtime & Infrastructure
+  rollback_strategy:
+    - Revert code changes in `capabilities/`.
+  success_criteria:
+    - Minio is importable in container.
+    - Buckets are created successfully.

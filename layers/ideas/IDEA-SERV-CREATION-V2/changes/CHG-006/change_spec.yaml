@@ -1,0 +1,25 @@
+meta:
+  artifact_type: change_spec
+
+change:
+  chg_key: CHG-006
+  idea_key: IDEA-SERV-CREATION-V2
+  title: Service Creation Wizard Integration & API Fix
+  impacted_layers:
+    - L1: Product (code, design, architecture)
+    - L4: Data & Privacy (persistence)
+    - L2: Delivery (CI/CD / infrastructure reload)
+  required_artifacts:
+    - change_spec.yaml
+    - design_doc.md
+    - test_report.yaml
+  security_requirements:
+    - input_validation
+    - multi-tenant_isolation (tenant_id)
+  rollback_strategy:
+    - revert main.py imports
+    - revert page.tsx logic
+  success_criteria:
+    - successful draft creation in Step 1
+    - successful chatbot creation in Step 2
+    - redirection to playground after Step 5

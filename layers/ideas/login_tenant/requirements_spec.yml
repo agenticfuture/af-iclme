@@ -1,0 +1,31 @@
+id: requirements-spec-login-tenant
+title: Requirements Specification - Tenant Login
+version: "1.0"
+idea: login_tenant
+requirements:
+  - id: FR-LOGIN-001
+    title: Secure Authentication
+    description: Authenticate users via email/password.
+    traceability: BR-TEN-002
+  - id: FR-LOGIN-002
+    title: MFA Support
+    description: Support TOTP for high-privileged roles.
+    mandatory_roles: [admin, tenant_admin]
+  - id: FR-LOGIN-003
+    title: Session Management
+    description: Issue secure RS256 JWTs.
+    token_fields: [user_id, tenant_id, role]
+  - id: FR-LOGIN-004
+    title: Tenant Isolation
+    description: Ensure login is tenant-scoped.
+    traceability: NFR-01
+  - id: FR-LOGIN-005
+    title: Password Recovery
+    description: Email-based secure reset.
+non_functional:
+  - id: NFR-LOGIN-001
+    title: Security Controls
+    controls: [HTTPS, Rate Limiting]
+  - id: NFR-LOGIN-002
+    title: Performance target
+    threshold_seconds: 2

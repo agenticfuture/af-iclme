@@ -1,0 +1,6 @@
+assurance_report:
+  chg_key: CHG-010
+  verifiers:
+    - Antigravity AI
+  summary: "Wizard UI polished to manage expectations for Channels and Agent Assignment features."
+  conclusion: "UX safeguards successfully implemented."

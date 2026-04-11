@@ -1,0 +1,255 @@
+workflow:
+  id: WF-TENANT-REG-001
+  name: tenant_registration
+  version: "0.2"
+  pattern: saga_orchestrator
+  identity_provider: keycloak
+  description: >
+    Deterministic tenant registration workflow with Keycloak integration.
+    Implements shared-realm + tenant-group model with full compliance,
+    control injection, idempotency, rollback, and governance registration.
+
+identity_model:
+  strategy: shared_realm_with_tenant_group
+  realm: servicegen-realm
+  tenant_group_pattern: "tenant_{tenant_id}"
+  token_claims:
+    required:
+      - sub
+      - email
+      - tenant_id
+      - roles
+      - exp
+      - iss
+    validation:
+      signature: required
+      audience: required
+      expiration: required
+      issuer_match: true
+
+state_machine:
+  deterministic: true
+  states:
+    - START
+    - RegistrationRequested
+    - APIValidated
+    - RateLimitValidated
+    - BotProtectionValidated
+    - ConsentValidated
+    - TenantPersisted
+    - KeycloakGroupProvisioned
+    - KeycloakUserProvisioned
+    - EmailVerificationPending
+    - EmailVerified
+    - PoliciesBound
+    - GovernanceRegistered
+    - AuditLogged
+    - TenantActivated
+    - END
+
+  failure_states:
+    - ValidationFailed
+    - DuplicateRejected
+    - KeycloakProvisionFailed
+    - ConsentFailed
+    - EmailVerificationTimeout
+    - RollbackCompleted
+
+ordering_guarantees:
+  enforced_by:
+    - saga_orchestrator
+    - explicit_state_transition_validation
+    - sequence_number_enforcement
+    - correlation_id_binding
+
+injection_points:
+
+  api_boundary:
+    controls:
+      - request_schema_validation
+      - rate_limiting
+      - captcha_bot_protection
+      - correlation_id_generation
+      - idempotency_key_generation
+      - telemetry_initialization
+    mitigates:
+      - RISK-SEC-TR-001
+      - RISK-AI-TR-003
+    test_coverage:
+      - TC-TR-SEC-003
+      - TC-TR-RISK-001
+
+  pre_persistence:
+    controls:
+      - consent_ledger_write
+      - immutable_hash_chain_update
+      - pii_classification_tagging
+      - encryption_at_rest_enforcement
+      - tenant_isolation_guard
+    mitigates:
+      - RISK-PRIV-TR-002
+      - RISK-REG-TR-004
+    test_coverage:
+      - TC-TR-PRIV-001
+      - TC-TR-PRIV-002
+
+  keycloak_admin_api:
+    authentication:
+      mTLS: required
+      service_account_scope: minimal
+      short_lived_tokens: true
+    operations:
+      - create_tenant_group
+      - assign_default_roles
+      - enforce_email_verification
+      - enforce_mfa_policy
+      - create_admin_user
+    idempotency_check:
+      - existing_user_lookup
+      - group_membership_validation
+    failure_action:
+      - trigger_rollback
+    test_coverage:
+      - TC-TR-SEC-001
+
+  webhook_receiver:
+    source: keycloak
+    validation:
+      mTLS: required
+      hmac_signature: required
+      issuer_validation: required
+      realm_validation: required
+      group_membership_validation: required
+      correlation_id_validation: required
+    transition_on_success: EmailVerified
+    failure_action:
+      - reject_event
+      - log_security_alert
+    test_coverage:
+      - TC-TR-SEC-002
+
+  post_state:
+    controls:
+      - audit_log_creation
+      - risk_scoring_update
+      - evidence_capture
+    test_coverage:
+      - TC-TR-REQ-001
+      - TC-TR-RISK-002
+
+  event_emission:
+    event_name: TenantRegistered
+    envelope:
+      required_fields:
+        - event_id
+        - event_type
+        - source_service
+        - workflow_id
+        - tenant_id
+        - correlation_id
+        - sequence_number
+        - timestamp
+        - signature
+    signing:
+      private_key: service_private_key
+      algorithm: ed25519_or_rsa256
+    replay_protection:
+      sequence_number_required: true
+      idempotency_key_required: true
+
+idempotency:
+  strategy: hash_email_timebucket
+  storage: workflow_store
+  duplicate_action:
+    - reject_if_completed
+    - resume_if_safe_state
+  prevents:
+    - duplicate_tenant_creation
+    - duplicate_keycloak_user
+
+rollback_strategy:
+  on_keycloak_failure:
+    - delete_keycloak_group_if_created
+    - delete_tenant_record
+    - log_failure
+    - emit_TenantRegistrationFailed_event
+    - update_risk_engine
+  on_email_verification_timeout:
+    - scheduled_cleanup_job
+    - delete_keycloak_user
+    - delete_tenant_record
+    - log_timeout
+    - risk_registry_update
+
+governance_registration:
+  required:
+    - risk_registry_entry
+    - compliance_registry_entry
+    - audit_registry_entry
+  occurs_after: EmailVerified
+  compliance_alignment:
+    - SOC2_CC1
+    - ISO27701_PIMS
+
+risk_mitigation:
+  - id: RISK-SEC-TR-001
+    mitigated_by:
+      - rate_limiting
+      - captcha
+      - idempotency
+  - id: RISK-PRIV-TR-002
+    mitigated_by:
+      - encryption
+      - pii_classification
+  - id: RISK-REG-TR-004
+    mitigated_by:
+      - consent_ledger_write
+      - policy_binding_validation
+
+compliance_mapping:
+  SOC2:
+    - CC1
+    - CC6
+    - CC7
+    - CC9
+  ISO_27701:
+    - A.7.2.1
+    - A.7.2.4
+    - A.7.2.8
+    - B.8.2.1
+  PIPEDA:
+    - consent
+    - safeguards
+    - accountability
+    - limiting_use
+
+test_coverage:
+  functional:
+    - TC-TR-REQ-001
+    - TC-TR-REQ-002
+  privacy:
+    - TC-TR-PRIV-001
+    - TC-TR-PRIV-002
+  security:
+    - TC-TR-SEC-001
+    - TC-TR-SEC-002
+    - TC-TR-SEC-003
+  risk:
+    - TC-TR-RISK-001
+    - TC-TR-RISK-002
+
+ci_cd_validation:
+  required_checks:
+    - state_machine_integrity
+    - injection_point_presence
+    - keycloak_mtls_configuration
+    - webhook_signature_validation_enabled
+    - compliance_mapping_complete
+    - test_case_mapping_complete
+  fail_pipeline_if:
+    - missing_injection_point
+    - missing_signature_validation
+    - missing_idempotency_rule
+    - missing_compliance_reference
+
+    

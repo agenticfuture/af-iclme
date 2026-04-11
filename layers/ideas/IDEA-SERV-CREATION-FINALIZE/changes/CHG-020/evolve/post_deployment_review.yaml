@@ -1,0 +1,11 @@
+meta:
+  artifact_type: post_deployment_review
+  layer: L8
+
+change_id: CHG-020
+observations:
+  - Additive migration is required in each environment before using deploy endpoint.
+  - Frontend continues to use generated IDs from step 1 and step 2.
+next_improvements:
+  - Add integration test that executes create service -> create chatbot -> deploy against test DB.
+  - Persist deployment org_id explicitly if direct querying by org is required.

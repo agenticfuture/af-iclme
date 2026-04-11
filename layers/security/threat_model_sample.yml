@@ -1,0 +1,11 @@
+meta:
+  artifact_type: threat_model
+  layer: L5
+
+threats:
+  - data_exfiltration
+  - injection_attack
+
+mitigations:
+  - input_validation
+  - output_sanitization

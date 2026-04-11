@@ -1,0 +1,6 @@
+compliance_report:
+  chg_key: CHG-011
+  controls_verified:
+    - ID: DATA-ISO-001
+      status: compliant
+      evidence: "Files partitioned by tenant/org/service ID in object storage."

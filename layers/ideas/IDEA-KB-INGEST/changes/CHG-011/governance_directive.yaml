@@ -1,0 +1,15 @@
+meta:
+  artifact_type: governance_directive
+
+governance:
+  chg_key: CHG-011
+  risk_level: medium
+  approvals_required:
+    - product_owner
+  autonomy_scope:
+    - storage_provisioning
+    - api_design
+  compliance_controls:
+    - data_lifecycle_mgmt
+  audit_requirements:
+    - upload_audit_logs

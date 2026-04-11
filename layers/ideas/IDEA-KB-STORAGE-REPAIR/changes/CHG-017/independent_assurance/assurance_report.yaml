@@ -1,0 +1,6 @@
+assurance_report:
+  chg_key: CHG-017
+  verifiers:
+    - Antigravity AI
+  summary: "Resolved ingestion failures caused by missing container dependencies and NameErrors. Verified storage reachability via UV sync and diagnostic logging."
+  conclusion: "Ingestion capability is fully restored and technically sound."

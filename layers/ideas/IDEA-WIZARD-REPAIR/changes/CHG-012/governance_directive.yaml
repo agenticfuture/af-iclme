@@ -1,0 +1,12 @@
+meta:
+  artifact_type: governance_directive
+
+governance:
+  chg_key: CHG-012
+  risk_level: low
+  approvals_required:
+    - tech_lead
+  autonomy_scope:
+    - state_persistence_logic
+  compliance_controls: []
+  audit_requirements: []

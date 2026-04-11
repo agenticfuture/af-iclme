@@ -1,0 +1,24 @@
+id: requirements-test-cases-login-tenant
+title: Functional Test Cases - Tenant Login
+version: "1.0"
+test_cases:
+  - id: TC-LOGIN-FUN-001
+    title: Valid Standard Login
+    priority: high
+    type: positive
+  - id: TC-LOGIN-FUN-002
+    title: Admin MFA Login
+    priority: critical
+    type: positive
+  - id: TC-LOGIN-FUN-003
+    title: Invalid Credentials
+    priority: high
+    type: negative
+  - id: TC-LOGIN-FUN-004
+    title: Rate Limit / Lockout
+    priority: high
+    type: negative
+  - id: TC-LOGIN-FUN-005
+    title: Multi-Tenant Isolation
+    priority: critical
+    type: negative

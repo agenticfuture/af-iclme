@@ -1,0 +1,12 @@
+meta:
+  artifact_type: build_manifest
+  layer: L2
+
+change_id: CHG-022
+status: success
+components_changed:
+  - ui-apps/service-gen-saas/app/dashboard/services/[id]/page.tsx
+checks:
+  - route param typing and awaiting updated
+  - link hrefs updated to use resolved serviceId
+  - API base URL fallback added

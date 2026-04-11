@@ -1,0 +1,25 @@
+meta:
+  artifact_type: idea
+
+idea:
+  idea_key: IDEA-WIZARD-ADVANCED
+  title: Advanced Service Creation Wizard with Knowledge Base & Deployment
+  description: Implement Step 3 as a MinIO-based knowledge ingestion layer, fix progressive saving in Steps 1-2, enhance UI with coming soon/blur states for Steps 4-5, and finalize the Step 5 deployment redirection.
+  domains:
+    - service
+    - knowledge_base
+    - product
+  types:
+    - functional
+    - integration
+  priority: high
+  initial_risk: medium
+  spiral_stage: IDEA
+
+success_metrics:
+  - metric: kb_ingestion
+    target: "Successful multi-file upload to MinIO under tenant-org namespace."
+  - metric: wizard_end_to_end
+    target: "Service created, Bot created, KB ingested, and deployed with playground redirect."
+  - metric: ui_fidelity
+    target: "Coming soon/Blur states correctly implemented for partial features."

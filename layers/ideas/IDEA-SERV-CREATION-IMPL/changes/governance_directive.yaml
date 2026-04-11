@@ -1,0 +1,7 @@
+governance_directive:
+  id: "GOV-005"
+  guidelines:
+    - "All service creations must start as DRAFT."
+    - "Chatbots must be linked to a Service ID."
+    - "Deployment triggers must be validated before activation."
+  approver: "Antigravity Governance"

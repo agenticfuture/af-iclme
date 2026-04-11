@@ -1,0 +1,537 @@
+version: "3.9"
+
+networks:
+  af-iclme:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  qdrant_data:
+  minio_data:
+  grafana_data:
+  prometheus_data:
+  ollama_data:
+  airbyte_data:
+  prefect_data:
+  keycloak_data:
+  airbyte_db_data:
+  airbyte_workspace:
+
+
+services:
+
+  # -------------------------------
+  # Core Database
+  # -------------------------------
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    volumes:
+      - ./docker/services/postgres/init:/docker-entrypoint-initdb.d
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d servicegen" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+    networks: [ af-iclme ]
+    env_file:
+      - .af-iclme/vendor/postgres/.env
+
+  traefik:
+    image: traefik:v3.0
+    container_name: traefik
+    command:
+
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--providers.file.filename=/etc/traefik/dynamic.yml"
+      # Define HTTPS entrypoint
+      - "--entrypoints.websecure.address=:443"
+      # Enable TLS
+      #- "--entrypoints.websecure.http.tls=true"
+      #- "--entrypoints.websecure.http.tls.certificates[0].certFile=/certs/_wildcard.servicegen.local.pem"
+      #- "--entrypoints.websecure.http.tls.certificates[0].keyFile=/certs/_wildcard.servicegen.local-key.pem"
+
+    ports:
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./docker/services/traefik/dynamic.yml:/etc/traefik/dynamic.yml
+      - ./af-iclme/certs:/certs
+    networks: [ af-iclme ]
+    # -------------------------------
+    # Control Plane
+    # -------------------------------
+    # service-gen-control-plane:
+    #   build:
+    #     context: ./app/micro-apps/control_plane/
+    #     dockerfile: Dockerfile
+    #   depends_on:
+    #     postgres:
+    #       condition: service_healthy
+    #   command: [ "sleep", "infinity" ]
+    #   env_file:
+    #     - ./vendor/service-gen-control-plane/.env
+    #   #command: upgrade head
+
+    # -------------------------------
+    # Backend API
+    # -------------------------------
+  af-iclme-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: service-gen-api
+    env_file:
+      - .env.local
+    working_dir: /app
+    volumes:
+      - ./app/ingress/api/:/app/
+      - ./capabilities:/app/capabilities/
+      - ./data:/app/data/
+    depends_on:
+      - postgres
+      - qdrant
+      - ollama
+      - prefect
+    # ports:
+    #   - "8000:8000"
+    networks: [ af-iclme ]
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.servicegenapi.rule=Host(`api.af-iclme.local`)"
+      - "traefik.http.routers.servicegenapi.entrypoints=websecure"
+      - "traefik.http.routers.servicegenapi.tls=true"
+      - "traefik.http.services.servicegenapi.loadbalancer.server.port=8000"
+    # -------------------------------
+    # Backend API
+    # -------------------------------
+    # service-gen-backend:
+    #   build:
+    #     context: ./backend
+    #     dockerfile: Dockerfile
+    #   container_name: sg_backend
+    #   env_file:
+    #     - .env
+    #   environment:
+    #     DATABASE_URL: postgresql://servicegen:servicegen@postgres:5432/servicegen
+    #     QDRANT_URL: http://qdrant:6333
+    #     OLLAMA_BASE_URL: http://ollama:11434
+    #     PREFECT_API_URL: http://prefect:4200/api
+    #     OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4317
+    #   depends_on:
+    #     - postgres
+    #     - qdrant
+    #     - ollama
+    #     - prefect
+    #   ports:
+    #     - "8000:8000"
+    #   networks: [ servicegen ]
+
+
+    # service-gen-ai-chatbot:
+    #   image: node:20-alpine
+    #   container_name: service-gen-ai-chatbot
+    #   env_file:
+    #     - ./ui-apps/service-gen-ai-chatbot/.env
+    #   working_dir: /app
+    #   command: sh -c "npm install -g pnpm && pnpm install && pnpm db:migrate && pnpm dev " #" npm i -g vercel && vercel link && vercel env pull && npm install && npm run dev "
+    #   # ports:
+    #   #   - "3000:3000"
+    #   volumes:
+    #     - ./ui-apps/service-gen-ai-chatbot:/app
+    #   # - ./ui/:
+    #   # - node_modules:/app/node_modules
+    #   depends_on:
+    #     - ollama
+    #   networks: [ servicegen ]
+    #   restart: unless-stopped
+    #   labels:
+    #     - "traefik.enable=true"
+    #     - "traefik.http.routers.servicegenbot.rule=Host(`bot.servicegen.local`)"
+    #     - "traefik.http.routers.servicegenbot.entrypoints=websecure"
+    #     - "traefik.http.routers.servicegenbot.tls=true"
+    #     - "traefik.http.services.servicegenbot.loadbalancer.server.port=3000"
+
+    # service-gen-agent-workspace:
+    #   image: node:20-alpine
+    #   container_name: service-gen-agent-workspace
+    #   env_file:
+    #     - ./ui-apps/service-gen-agent-workspace/.env
+    #   working_dir: /app
+    #   command: sh -c "npm install -g pnpm && pnpm install && pnpm db:migrate && pnpm dev " #" npm i -g vercel && vercel link && vercel env pull && npm install && npm run dev "
+    #   # ports:
+    #   #   - "3001:3000"
+    #   volumes:
+    #     - ./ui-apps/service-gen-agent-workspace:/app
+    #   # - ./ui/:
+    #   # - node_modules:/app/node_modules
+    #   depends_on:
+    #     - ollama
+    #   networks: [ servicegen ]
+    #   restart: unless-stopped
+    #   labels:
+    #     - "traefik.enable=true"
+    #     - "traefik.http.routers.servicegenagwkspace.rule=Host(`agentwkspace.servicegen.local`)"
+    #     - "traefik.http.routers.servicegenagwkspace.entrypoints=websecure"
+    #     - "traefik.http.routers.servicegenagwkspace.tls=true"
+    #     - "traefik.http.services.servicegenagwkspace.loadbalancer.server.port=3000"
+
+    # nextjs-saas:
+    #   image: node:20-alpine
+    #   container_name: auth0-saas-starter
+    #   env_file:
+    #     - ./vendor/auth0-saas-starter/.env.local
+
+    #   working_dir: /app
+    #   command: sh -c " npm install -g pnpm && pnpm install && node -v  && pnpm dev" #&& pnpm approve-builds" #   && && pnpm db:migrate && pnpm dev " #" npm i -g vercel && vercel link && vercel env pull && npm install && npm run dev "
+    #   ports:
+    #     - "3003:3000"
+    #   volumes:
+    #     - ./vendor/auth0-saas-starter:/app
+    #   # - ./ui/:
+    #   # - node_modules:/app/node_modules
+    #   environment:
+    #     NODE_ENV: development
+    #     NEXT_TELEMETRY_DISABLED: "1"
+
+    #     # ---- Vercel AI SDK / LLM ----
+    #     OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+
+    #     # If using local LLM (Ollama / LM Studio)
+    #     OLLAMA_BASE_URL: http://ollama:11434
+    #   #depends_on:
+    #   #  - ollama
+    #   networks: [ servicegen ]
+    #   restart: unless-stopped
+    #   tty: true
+    #   stdin_open: true
+
+  af-iclme-ui:
+    image: node:20-alpine
+    container_name: af-iclme-ui
+    env_file:
+      - ./af-iclme/ui-apps/iclme/.env.local
+    working_dir: /app
+    command: sh -c " npm install -g pnpm && pnpm install && pnpm install next-auth@beta  && pnpm dev" #&& pnpm approve-builds" #   && && pnpm db:migrate && pnpm dev " #" npm i -g vercel && vercel link && vercel env pull && npm install && npm run dev "
+    # ports:
+    #   - "3002:3000"
+    volumes:
+      - ./af-iclme/ui-apps/iclme/:/app
+    # - ./ui/:
+    # - node_modules:/app/node_modules
+    networks: [ af-iclme ]
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.servicegensaas.rule=Host(`api.af-iclme.local`)"
+      - "traefik.http.routers.servicegensaas.entrypoints=websecure"
+      - "traefik.http.routers.servicegensaas.tls=true"
+      - "traefik.http.services.servicegensaas.loadbalancer.server.port=3000"
+    # -----------------------------
+    # STT + TTS (ServiceGen-managed)
+    # -----------------------------
+    # You can run these as FastAPI modules inside servicegen-api too.
+    # Here we show them as optional dedicated containers.
+    # stt-service:
+    #   build: ./backend
+    #   container_name: servicegen-stt
+    #   env_file:
+    #     - .env
+    #   command: python -m app.services.stt_stream
+    #   ports:
+    #     - "8755:8755"
+    #   depends_on:
+    #     - servicegen-api
+    #   networks:
+    #     - servicegen-net
+
+    # tts-service:
+    #   build: ./backend
+    #   container_name: servicegen-tts
+    #   env_file:
+    #     - .env
+    #   command: python -m app.services.tts_service
+    #   ports:
+    #     - "8756:8756"
+    #   depends_on:
+    #     - servicegen-api
+    #   networks:
+    #     - servicegen-net
+
+    # -----------------------------
+    # Calls (Open-source telephony)
+    # -----------------------------
+    # Asterisk SIP server; you can call it using a softphone (Zoiper/Linphone)
+    # asterisk:
+    #   image: andrius/asterisk
+    #   container_name: servicegen-asterisk
+    #   ports:
+    #     - "5060:5060/udp"
+    #     - "10000-10100:10000-10100/udp"
+    #   volumes:
+    #     - ./telephony:/etc/asterisk
+    #   networks:
+    #     - servicegen-net
+
+
+    # -------------------------------
+    # Vector Store
+    # -------------------------------
+    # qdrant:
+    #   image: qdrant/qdrant:v1.16.2
+    #   container_name: sg_qdrant
+    #   volumes:
+    #     - qdrant_data:/qdrant/storage
+    #   ports:
+    #     - "6333:6333"
+    #   networks: [ servicegen ]
+    # # -------------------------------
+    # # Object Storage (KA files, exports)
+    # # -------------------------------
+    # minio:
+    #   image: minio/minio
+    #   container_name: sg_minio
+    #   command: server /data --console-address ":9001"
+    #   volumes:
+    #     - minio_data:/data
+    #   ports:
+    #     - "9010:9000"
+    #     - "9011:9001"
+
+    #   networks: [ servicegen ]
+    #   env_file:
+    #     - ./vendor/minio/.env
+    # -------------------------------
+    # Prefect (Workflow Orchestration)
+    # -------------------------------
+    # prefect:
+    #   image: prefecthq/prefect:2-latest #3-latest #2-latest
+    #   container_name: sg_prefect
+    #   entrypoint: [ "prefect", "server", "start" ]
+    #   command: [ "--host", "0.0.0.0" ]
+    #   environment:
+    #     PREFECT_API_DATABASE_CONNECTION_URL: "postgresql+asyncpg://prefect_:prefect@postgres:5432/prefect"
+    #   depends_on:
+    #     postgres:
+    #       condition: service_healthy
+    #   volumes:
+    #     - prefect_data:/root/.prefect
+    #   ports:
+    #     - "4200:4200"
+    #   networks: [ servicegen ]
+    #   env_file:
+    #     - ./vendor/prefect/.env
+
+    #postgresql+psycopg2://${PREFECT_DB_USER}:${PREFECT_DB_PWD}@${PREFECT_DB_HOST}:${PREFECT_DB_PORT:-5432}/${PREFECT_DB}
+    #sqlite+aiosqlite:///prefect.db  
+
+    # -------------------------------
+    # Ollama (Local LLMs)
+    # -------------------------------
+    # ollama:
+    #   image: ollama/ollama:latest
+    #   container_name: ollama
+    #   volumes:
+    #     - ollama_data:/root/.ollama
+    #   ports:
+    #     - "11434:11434"
+    #   networks: [ servicegen ]
+
+    # -------------------------------
+    # Botpress (Chat CX Bot)
+    # -------------------------------
+    # botpress:
+    #   image: botpress/server:latest
+    #   container_name: sg_botpress
+    #   platform: linux/arm64
+    #   environment:
+    #     DATABASE_URL: postgres://servicegen:servicegen@postgres:5432/botpress
+    #   depends_on:
+    #     - postgres
+    #   ports:
+    #     - "3000:3000"
+    #   networks: [ servicegen ]
+
+    # -------------------------------
+    # Rasa (Alternative NLU)
+    # -------------------------------
+    # rasa:
+    #   image: rasa/rasa:3.6.20-full
+    #   container_name: sg_rasa
+    #   volumes: [ "./rasa:/app" ]
+    #   command: run --enable-api --cors "*" --debug
+    #   ports:
+    #     - "5005:5005"
+    #   networks: [ servicegen ]
+
+    # rasa-actions:
+    #   image: rasa/rasa-sdk:3.6.2
+    #   ports: [ "5055:5055" ]
+    #   volumes: [ "./rasa/actions:/app/actions" ]
+    #   networks: [ servicegen ]
+    #   env_file:
+    #     - ./vendor/rasa-actions/.env
+
+    # email-bridge:
+    #   build: ./email_bridge
+    #   environment:
+    #     SERVICEGEN_API_URL: http://service-gen-api:8000
+    #     REDIS_URL: redis://redis:6379/1
+    #     STREAM_INBOUND: stream:channel:inbound
+    #     POLL_SECONDS_DEFAULT: 20
+    #   depends_on: [ redis, servicegen-api ]
+    #   networks: [ servicegen ]
+
+    # email-worker:
+    #   build: ./email_worker
+    #   environment:
+    #     SERVICEGEN_API_URL: http://servicegen-api:8000
+    #     REDIS_URL: redis://redis:6379/1
+    #     STREAM_INBOUND: stream:channel:inbound
+    #     RASA_URL: http://rasa:5005
+    #   depends_on: [ redis, servicegen-api, rasa ]
+    #   networks: [ servicegen ]
+
+    # redis:
+    #   image: redis:7
+    #   ports: [ "6379:6379" ]
+    #   networks: [ servicegen ]
+    # -------------------------------
+    # Asterisk (Local Voice Entry)
+    # -------------------------------
+    # asterisk:
+    #   image: andrius/asterisk
+    #   container_name: sg_asterisk
+    #   ports:
+    #     - "5060:5060/udp"
+    #     - "10000-10100:10000-10100/udp"
+    #   volumes:
+    #     - ./telephony/asterisk:/etc/asterisk
+    #   networks: [ servicegen ]
+
+    # -------------------------------
+    # Keycloak (Auth / Tenant IAM)
+    # -------------------------------
+    # keycloak:
+    #   image: quay.io/keycloak/keycloak:24.0
+    #   container_name: sg_keycloak
+    #   command: start-dev # start in prod
+    #   env_file:
+    #     - ./vendor/keycloak/.env
+
+    #   depends_on:
+    #     postgres:
+    #       condition: service_healthy
+
+    #   #ports:
+    #   #  - "8081:8080"
+    #   networks: [ servicegen ]
+    #   labels:
+    #     - "traefik.enable=true"
+    #     - "traefik.http.routers.keycloak.rule=Host(`auth.servicegen.local`)"
+    #     - "traefik.http.routers.keycloak.entrypoints=websecure"
+    #     - "traefik.http.routers.keycloak.tls=true"
+    #     - "traefik.http.services.keycloak.loadbalancer.server.port=8080"
+
+    #8080
+
+    # -------------------------------
+    # OPA (Policy Engine)
+    # -------------------------------
+    # opa:
+    #   image: openpolicyagent/opa:latest
+    #   container_name: sg_opa
+    #   command: run --server /policies
+    #   volumes:
+    #     - ./policies:/policies
+    #   ports:
+    #     - "8181:8181"
+    #   networks: [ servicegen ]
+    # -------------------------------
+    # Observability - Loki
+    # -------------------------------
+    # loki:
+    #   image: grafana/loki:2.9.0
+    #   container_name: sg_loki
+    #   ports:
+    #     - "3100:3100"
+    #   networks: [ servicegen ]
+
+    # promtail:
+    #   image: grafana/promtail:2.9.0
+    #   container_name: sg_promtail
+    #   volumes:
+    #     - ./observability/loki/promtail.yaml:/etc/promtail/config.yaml
+    #     - /var/run/docker.sock:/var/run/docker.sock
+    #     # - /var/lib/docker/containers:/var/lib/docker/containers:ro
+    #     # - /var/run/docker.sock:/var/run/docker.sock:ro
+    #     # - ./observability/promtail.yml:/etc/promtail/config.yml:ro
+    #     # - ./observability/promtail_positions:/tmp/positions
+
+    #   command: -config.file=/etc/promtail/config.yaml
+    #   depends_on:
+    #     - loki
+    #   networks: [ servicegen ]
+
+    # -------------------------------
+    # Observability - Prometheus
+    # -------------------------------
+    # prometheus:
+    #   image: prom/prometheus
+    #   container_name: sg_prometheus
+    #   volumes:
+    #     - ./observability/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    #     - prometheus_data:/prometheus
+    #   ports:
+    #     - "9090:9090"
+    #   networks: [ servicegen ]
+
+    # -------------------------------
+    # Observability - Grafana
+    # -------------------------------
+    # grafana:
+    #   image: grafana/grafana:10.2.0
+    #   container_name: sg_grafana
+    #   volumes:
+    #     - grafana_data:/var/lib/grafana
+    #   ports:
+    #     - "3001:3000"
+    #   networks: [ servicegen ]
+
+    # -------------------------------
+    # OpenTelemetry Collector
+    # -------------------------------
+    # otel-collector:
+    #   image: otel/opentelemetry-collector:latest #0.103.0
+    #   container_name: sg_otel
+    #   command: [ "--config=/etc/otel/otel-collector.yaml" ]
+    #   volumes:
+    #     - ./observability/otel/otel-collector.yaml:/etc/otel/otel-collector.yaml
+    #   ports:
+    #     - "4317:4317"
+    #     - "4318:4318"
+    #   depends_on:
+    #     - tempo
+    #   networks: [ servicegen ]
+
+    # tempo:
+    #   image: grafana/tempo:2.5.0
+    #   container_name: servicegen-tempo
+    #   command: [ "-config.file=/etc/tempo.yaml" ]
+    #   volumes:
+    #     - ./observability/tempo.yml:/etc/tempo.yaml:ro
+    #   ports:
+    #     - "3200:3200" # tempo query
+    #     - "4317:4317" # otlp grpc
+    #     - "4318:4318" # otlp http
+    #   networks:
+    #     - servicegen

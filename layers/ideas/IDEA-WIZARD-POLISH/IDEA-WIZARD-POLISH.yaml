@@ -1,0 +1,22 @@
+meta:
+  artifact_type: idea
+
+idea:
+  idea_key: IDEA-WIZARD-POLISH
+  title: Wizard UI Polishing for Coming Soon Features
+  description: Disable the "Add Channel" and "Add Agent" buttons in Steps 4 and 5 of the service creation wizard. Blur agent assignment input fields and add "Coming Soon" tags to manage user expectations for unimplemented features.
+  domains:
+    - product
+    - ui
+  types:
+    - functional
+    - ux
+  priority: medium
+  initial_risk: low
+  spiral_stage: IDEA
+
+success_metrics:
+  - metric: ui_clarity
+    target: "Users can clearly see which features are coming soon."
+  - metric: interaction_prevention
+    target: "Unclickable buttons and blurred fields prevent invalid data entry."

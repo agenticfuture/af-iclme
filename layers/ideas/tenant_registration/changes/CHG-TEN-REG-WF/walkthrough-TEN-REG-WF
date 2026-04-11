@@ -1,0 +1,23 @@
+# Walkthrough: Generating Tenant Registration Workflow (CHG-TEN-REG-WF)
+
+This document describes the process of synthesizing the previously generated specifications into a functional workflow for `tenant_registration`.
+
+1. **Specification Synthesis**:
+   - Synthesized the **Requirements Spec** (Functional flow), **Security Spec** (Rate limiting, Hashing), **Privacy Spec** (Consent, Isolation), and **Risk Spec** (Token expiration) into a single unified logic chain.
+
+2. **Logic Modeling**:
+   - Created a Mermaid diagram in `workflow.md` to visualize the state transitions from `Draft` to `Active` or `Purged`.
+   - Identified critical branching points: CAPTCHA/Rate Limit check, Duplicate Email check, and Token Validation.
+
+3. **Step-by-Step Detailing**:
+   - Detailed the technical actions at each stage:
+     - **Frontend**: Explicit consent and bot protection.
+     - **Backend**: Sanitization and atomic persistence (Transaction logic).
+     - **Async**: Token generation and email dispatch.
+     - **Interactive**: The verification handshake and first-login MFA enforcement.
+
+4. **Machine-Readable Mapping**:
+   - Mapped the Markdown steps to a structured `workflow.yml` format, enabling systemic ingestion and future automation of the registration lifecycle.
+
+5. **Artifact Finalization**:
+   - Organized all files under the `tenant_registration` domain and recorded the execution context in the `CHG-TEN-REG-WF` folder.

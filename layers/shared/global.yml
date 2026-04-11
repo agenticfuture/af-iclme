@@ -1,0 +1,14 @@
+meta:
+  artifact_id: <UUID>
+  artifact_type: <type>
+  layer: L<0-8>
+  project_id: <UUID>
+  idea_id: <UUID>
+  change_id: <UUID>
+  governance_directive_id: <UUID|null>
+  prompt_refs:
+    - <prompt_id>
+  version: 1
+  checksum: <sha256>
+  created_by: <agent|user>
+  created_at: <timestamp>

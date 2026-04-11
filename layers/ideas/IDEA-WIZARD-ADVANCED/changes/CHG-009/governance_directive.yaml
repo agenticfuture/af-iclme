@@ -1,0 +1,15 @@
+meta:
+  artifact_type: governance_directive
+
+governance:
+  chg_key: CHG-009
+  risk_level: medium
+  approvals_required:
+    - product_owner
+  autonomy_scope:
+    - storage_ops
+    - frontend_logic
+  compliance_controls:
+    - data_isolation
+  audit_requirements:
+    - logging_uploads

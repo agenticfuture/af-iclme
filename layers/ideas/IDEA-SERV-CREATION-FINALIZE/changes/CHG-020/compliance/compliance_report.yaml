@@ -1,0 +1,16 @@
+meta:
+  artifact_type: compliance_report
+  layer: L6
+
+change_id: CHG-020
+status: passed
+checks:
+  - name: schema_alignment
+    result: passed
+    evidence: migration adds missing deployments.url column used by ORM model.
+  - name: tenant_context_integrity
+    result: passed
+    evidence: deployment task validates tenant+service+chatbot relation before insert.
+  - name: frontend_id_flow_preserved
+    result: passed
+    evidence: wizard step 1/2 service/chatbot creation code remains intact.

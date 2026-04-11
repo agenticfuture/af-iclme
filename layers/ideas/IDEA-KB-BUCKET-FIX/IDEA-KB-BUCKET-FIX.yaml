@@ -1,0 +1,19 @@
+meta:
+  artifact_type: idea
+
+idea:
+  idea_key: IDEA-KB-BUCKET-FIX
+  title: Robust MinIO Bucket Creation
+  description: Ensure MinIO buckets are reliably created and files uploaded, addressing reports of missing buckets in the UI.
+  domains:
+    - Storage
+    - Infrastructure
+  types:
+    - bugfix
+  priority: critical
+  initial_risk: low
+  spiral_stage: IDEA
+
+success_metrics:
+  - metric: bucket_visibility
+    target: "Bucket 'servicegen-knowledge' exists in MinIO UI after first upload."

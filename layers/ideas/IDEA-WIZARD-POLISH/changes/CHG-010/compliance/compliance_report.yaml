@@ -1,0 +1,6 @@
+compliance_report:
+  chg_key: CHG-010
+  controls_verified:
+    - ID: UX-ST-001
+      status: compliant
+      evidence: "Unimplemented features are clearly marked and disabled."

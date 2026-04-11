@@ -1,0 +1,155 @@
+
+
+
+# 📄 opa.yml  
+# OPA Policy Configuration – Tenant Registration  
+Version: 1.0  
+
+
+
+opa:
+  enabled: true
+  engine: open_policy_agent
+
+  enforcement_layers:
+
+    ci_cd:
+      enabled: true
+      validates:
+        - injection_points
+        - mtls_enforcement
+        - signed_event_envelope
+        - idempotency_defined
+        - rollback_defined
+        - compliance_mapping_present
+        - risk_mapping_complete
+        - test_coverage_complete
+        - deterministic_state_machine
+        - shared_realm_identity_strategy
+      failure_action: pipeline_fail
+
+    api_gateway:
+      enabled: true
+      validates:
+        - jwt_signature_valid
+        - tenant_claim_present
+        - role_authorization
+        - mfa_required_if_admin
+        - rate_limit_status
+      failure_action: request_denied
+
+    workflow_engine:
+      enabled: true
+      validates:
+        - valid_state_transition
+        - consent_before_identity
+        - idempotency_enforced
+        - risk_threshold_not_exceeded
+      failure_action: transition_blocked
+
+    infrastructure_admission:
+      enabled: true
+      validates:
+        - mtls_enabled
+        - webhook_signature_validation_enabled
+        - no_plaintext_secrets
+        - scoped_service_accounts
+        - network_policy_defined
+      failure_action: deployment_blocked
+
+  policy_domains:
+    - injection
+    - identity
+    - mtls
+    - event
+    - idempotency
+    - rollback
+    - compliance
+    - risk
+    - test_coverage
+    - state_machine
+
+  required_controls:
+
+    injection_points:
+      - api_boundary
+      - pre_persistence
+      - keycloak_admin_api
+      - webhook_receiver
+      - post_state
+      - event_emission
+
+    mtls:
+      required_for:
+        - keycloak_admin_api
+        - webhook_receiver
+
+    event_emission:
+      must_be_signed: true
+      required_envelope_fields:
+        - event_id
+        - event_type
+        - source_service
+        - workflow_id
+        - tenant_id
+        - correlation_id
+        - sequence_number
+        - timestamp
+        - signature
+
+    idempotency:
+      strategy_required: true
+      duplicate_action_required: true
+
+    rollback:
+      keycloak_failure_required: true
+      email_timeout_required: true
+
+    compliance_mapping:
+      SOC2:
+        - CC1
+        - CC6
+        - CC7
+        - CC9
+      ISO_27701:
+        - A.7.2.1
+        - A.7.2.4
+        - A.7.2.8
+        - B.8.2.1
+      PIPEDA:
+        - consent
+        - safeguards
+        - accountability
+
+    risk_mapping:
+      required:
+        - RISK-SEC-TR-001
+        - RISK-PRIV-TR-002
+        - RISK-REG-TR-004
+
+    test_coverage:
+      required_domains:
+        - functional
+        - privacy
+        - security
+        - risk
+
+    state_machine:
+      deterministic: true
+      failure_states_required: true
+
+    identity_model:
+      strategy: shared_realm_with_tenant_group
+      tenant_group_pattern_required: true
+
+  governance_integration:
+    audit_policy_decisions: true
+    link_to_risk_engine: true
+    link_to_compliance_registry: true
+    evidence_export_enabled: true
+
+  ci_cd_integration:
+    tool: conftest
+    policy_path: ./policy/
+    input_file: workflow.yml
+    fail_on_deny: true

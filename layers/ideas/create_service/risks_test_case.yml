@@ -1,0 +1,11 @@
+id: risks-test-case-create-service
+title: Risk Test Cases - Create Service
+test_cases:
+  - id: TC-RISK-SERV-001
+    mitigates: RISK-SEC-2026-SERV-001
+  - id: TC-RISK-SERV-002
+    mitigates: RISK-SEC-2026-SERV-002
+  - id: TC-RISK-SERV-003
+    mitigates: RISK-PRIV-2026-SERV-003
+  - id: TC-RISK-SERV-004
+    mitigates: RISK-SEC-2026-SERV-004

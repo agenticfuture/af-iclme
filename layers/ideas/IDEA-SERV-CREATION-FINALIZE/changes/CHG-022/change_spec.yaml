@@ -1,0 +1,32 @@
+meta:
+  artifact_type: change_spec
+  layer: L8
+
+change:
+  change_key: CHG-022
+  description: Fix Next.js dynamic route server error by unwrapping async params in service details page and hardening backend API URL resolution.
+  affected_layers:
+    - L1
+    - L3
+    - L4
+    - L5
+    - L6
+    - L7
+    - L8
+
+requirements:
+  functional:
+    - Resolve `params` as Promise before accessing `id` in `/dashboard/services/[id]` server page.
+    - Preserve frontend wizard sections that create service and chatbot IDs.
+    - Avoid server fetch failures by using resilient API base URL fallback.
+  non_functional:
+    - Minimal scope patch to target failing route.
+    - Keep existing UI and flow semantics unchanged.
+
+required_tests:
+  - Static scan for `params.id` misuse in services route tree.
+  - Verify no removal of step 1/2 create-service/create-chatbot code blocks.
+
+success_criteria:
+  - No runtime error: `params is a Promise and must be unwrapped` on `/dashboard/services/[id]`.
+  - Service details page fetch call uses a valid base URL fallback.

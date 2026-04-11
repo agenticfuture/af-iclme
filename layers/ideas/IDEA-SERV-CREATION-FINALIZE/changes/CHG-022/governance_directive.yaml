@@ -1,0 +1,21 @@
+meta:
+  artifact_type: governance_directive
+  layer: L7
+
+risk_assessment:
+  level: low
+
+constraints:
+  - do_not_modify_wizard_step1_step2_creation_logic
+  - patch_only_targeted_service_details_route
+
+approvals:
+  required: true
+  approvers:
+    - frontend_owner
+
+autonomy_scope:
+  allowed_layers:
+    - L1
+    - L3
+  max_risk: low

@@ -1,0 +1,60 @@
+[project]
+name = "af-iclme-api"
+version = "0.1.0"
+description = "API for af-iclme  environment using FastAPI, LangChain, Prefect, and vector databases."
+requires-python = ">=3.10"
+
+dependencies = [
+    # Web frameworks
+    "flask==2.3.3",
+    "fastapi",
+    "uvicorn[standard]",
+    # Config and environment management
+    "python-dotenv",
+    "python-decouple",
+    # Data handling
+    "pandas",
+    "aiohttp",
+    "websockets",
+    # Orchestration & background workflows
+    "prefect>=2.14.0,<3.0.0",
+    #"prefect>=3.6.7",
+    # AI & LLM integration
+    "langchain",
+    "langchain-text-splitters",
+    "llama-index",
+    "ollama",
+    "openai",
+    "anthropic",
+    "crewai[google-genai,tools]",
+    "litellm",
+    # Vector stores & databases
+    "faiss-cpu",
+    "qdrant-client",
+    "psycopg2-binary",
+    # Security / JWT
+    "python-jose",
+    # Monitoring & metrics
+    "prometheus-client",
+    # HTTP / requests
+    "requests",
+    "python-docx",
+    "crewai-tools>=1.6.1",
+    "pyyaml>=6.0.3",
+    "firecrawl-py>=4.14.0",
+    "minio",
+    "python-multipart"
+
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.uv]
+required-environments = [
+     "sys_platform == 'linux' and platform_machine == 'aarch64'",
+]
+
+[tool.setuptools.packages.find]
+include = []

@@ -1,0 +1,12 @@
+security_spec:
+  title: Tenant Registration Security
+  version: "1.0"
+  traceability: SEC-SYS-001, SEC-SYS-002, SEC-SYS-008, SEC-SYS-009
+  controls:
+    - password_hashing_argon2
+    - registration_rate_limiting
+    - sql_injection_prevention
+    - security_event_logging
+  rate_limiting:
+    max_attempts: 5
+    window: 1h

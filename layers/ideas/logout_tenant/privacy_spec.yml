@@ -1,0 +1,18 @@
+id: privacy-spec-logout-tenant
+title: Privacy Specification - Tenant Logout
+framework: PIPEDA
+controls:
+  - id: PR-LOGOUT-001
+    title: Storage Purge
+    description: Clear browser PII.
+  - id: PR-LOGOUT-002
+    title: Logout Audit
+    fields: [tenant_id, user_id, timestamp]
+  - id: PR-LOGOUT-003
+    title: Retention
+    policy: standard_24m
+  - id: PR-LOGOUT-004
+    title: Cache Purge
+    description: Clear LLM fragments.
+residency:
+  region: Canada

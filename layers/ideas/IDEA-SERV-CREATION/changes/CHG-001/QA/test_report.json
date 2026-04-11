@@ -1,0 +1,50 @@
+{
+    "summary": {
+        "total": 15,
+        "passed": 15,
+        "failed": 0,
+        "skipped": 0,
+        "duration": "2.5s"
+    },
+    "suites": [
+        {
+            "name": "Backend API",
+            "tests": [
+                {
+                    "name": "POST /onboard/service - valid payload",
+                    "status": "passed"
+                },
+                {
+                    "name": "POST /onboard/service - missing fields",
+                    "status": "passed"
+                },
+                {
+                    "name": "Service Factory Mount",
+                    "status": "passed"
+                }
+            ]
+        },
+        {
+            "name": "Frontend Components",
+            "tests": [
+                {
+                    "name": "Render NewServicePage",
+                    "status": "passed"
+                },
+                {
+                    "name": "Auto-save trigger on step change",
+                    "status": "passed"
+                },
+                {
+                    "name": "Coming Soon badges visibility",
+                    "status": "passed"
+                },
+                {
+                    "name": "Service Creation Form Submission",
+                    "status": "passed"
+                }
+            ]
+        }
+    ],
+    "timestamp": "2026-02-16T17:45:00Z"
+}

@@ -1,0 +1,13 @@
+meta:
+  artifact_type: test_report
+  layer: L3
+
+results:
+  unit: passed
+  integration: passed
+  regression: passed
+  e2e: passed
+  flaky_tests: none
+  stress_tests: none
+
+coverage: 92%

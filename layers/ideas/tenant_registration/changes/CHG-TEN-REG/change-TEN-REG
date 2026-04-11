@@ -1,0 +1,9 @@
+Change ID: CHG-TEN-REG
+Name: Tenant Registration Specification & Test Cases
+Description: Generation of a comprehensive suite of specifications (Requirements, Privacy, Security, Risks) and their corresponding test cases for the `tenant_registration` requirement (BR-TEN-001).
+Scope: Tenant Management
+Standards Followed:
+- PIPEDA (Privacy)
+- Zero Trust (Security)
+- Enterprise Risk Management (Risks)
+Files Generated: 16 files (8 MD, 8 YAML) in `./af-iclme/layers/ideas/tenant_registration/`.

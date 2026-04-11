@@ -1,0 +1,9 @@
+compliance_report:
+  chg_key: CHG-015
+  controls_verified:
+    - ID: MONITOR-001
+      status: compliant
+      evidence: "Ingestion lifecycle fully orchestrated and logged via Prefect flows."
+    - ID: RETRY-001
+      status: compliant
+      evidence: "MinIO upload task configured with 3 retries."

@@ -1,0 +1,13 @@
+meta:
+  artifact_type: governance_directive
+
+governance:
+  chg_key: CHG-016
+  risk_level: low
+  approvals_required:
+    - storage_admin
+  autonomy_scope:
+    - bucket_configuration
+  compliance_controls:
+    - ID: DATA-REST-001
+      description: "Data must be stored in encrypted/secured buckets."

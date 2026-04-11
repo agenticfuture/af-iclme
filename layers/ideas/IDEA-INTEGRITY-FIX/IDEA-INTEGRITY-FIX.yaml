@@ -1,0 +1,25 @@
+meta:
+  artifact_type: idea
+
+idea:
+  idea_key: IDEA-INTEGRITY-FIX
+  title: Resolve Database Integrity Error for Service Creation
+  description: Fix the IntegrityError (ForeignKeyViolation) by seeding the database with the default tenant and organization IDs used by the backend capability.
+  prompt_id: 11
+  prompt_refs:
+    - /Users/franck/Documents/projects/ServiceGenMeta/ServiceGen/af-iclme/execution-plans/prompts_input/exe_plan_template_prompt.md
+  prompt_description: Correct the DBAPI exception during insertion.
+  domains:
+    - service
+    - data
+    - product
+  types:
+    - bugfix
+    - infrastructure
+  priority: high
+  initial_risk: low
+  spiral_stage: IDEA
+
+success_metrics:
+  - metric: database_insertion
+    target: "Successful commit of Service record without ForeignKeyViolation"

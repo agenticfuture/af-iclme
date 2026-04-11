@@ -1,0 +1,10 @@
+Change ID: CHG-TEN-REG-WF
+Name: Tenant Registration Workflow Design
+Description: Creation of a detailed operational workflow (`workflow.md`) and machine-readable specification (`workflow.yml`) for the `tenant_registration` requirement.
+Scope: Tenant Lifecycle
+Design Alignment:
+- Requirements: Automated Admin assignment and verification loop.
+- Security: CAPTCHA, Rate Limiting, and Argon2 hashing.
+- Privacy: Mandatory Consent Ledger recording and 48h retention purging.
+- Risks: Mitigation of bot abuse and token interception.
+Files Generated: 2 files in `./af-iclme/layers/ideas/tenant_registration/`.

@@ -1,0 +1,6 @@
+post_deployment_review:
+  chg_key: CHG-018
+  outcome: success
+  learnings:
+    - "Granular API endpoints are significantly easier to debug than monolithic bulk collectors."
+    - "UI-side orchestration provides a much better UX by showing individual progress/status of ingestion events."

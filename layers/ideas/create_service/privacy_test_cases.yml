@@ -1,0 +1,15 @@
+id: privacy-test-cases-create-service
+title: Privacy Test Cases - Create Service
+test_cases:
+  - id: TC-PR-SERV-001
+    title: Ingestion Masking
+    automated: true
+  - id: TC-PR-SERV-002
+    title: Credential Secrecy
+    automated: true
+  - id: TC-PR-SERV-003
+    title: Audit Logging
+    automated: true
+  - id: TC-PR-SERV-004
+    title: Tenant Scoping
+    automated: true

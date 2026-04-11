@@ -1,0 +1,13 @@
+meta:
+  artifact_type: audit_report
+  layer: L7
+
+scope:
+  - code_review
+  - security_assessment
+
+additional_layer: independent assurance
+
+findings: none
+status: passed
+auditor: external_audit_firm

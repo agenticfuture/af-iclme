@@ -1,0 +1,6 @@
+assurance_report:
+  chg_key: CHG-015
+  verifiers:
+    - Antigravity AI
+  summary: "Knowledge Base Ingestion now utilizes Prefect for formal orchestration, providing full traceability and built-in resilience."
+  conclusion: "The system meets advanced monitoring and reliability standards."

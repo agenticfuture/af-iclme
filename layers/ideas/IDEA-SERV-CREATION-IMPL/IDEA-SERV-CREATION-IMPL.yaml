@@ -1,0 +1,9 @@
+idea:
+  name: "Service Creation Flow Implementation"
+  description: "End-to-end implementation of the service creation wizard, linking frontend steps to backend database persistence."
+  owner: "Antigravity"
+  status: "IDEA"
+  layers:
+    - L1: "Product (Code/Architecture)"
+    - L3: "Quality Assurance (Testing)"
+    - L8: "Intent & Idea"

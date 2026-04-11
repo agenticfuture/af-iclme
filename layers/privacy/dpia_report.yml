@@ -1,0 +1,12 @@
+meta:
+  artifact_type: dpia_report
+  layer: L4
+
+data_processed:
+  - attachments
+
+pii_detected: possible
+mitigation:
+  - auto_redaction
+retention_policy: 30_days
+status: approved

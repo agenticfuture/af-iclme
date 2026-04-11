@@ -1,0 +1,12 @@
+id: privacy-test-cases-logout-tenant
+title: Privacy Test Cases - Tenant Logout
+test_cases:
+  - id: TC-PR-LOGOUT-001
+    title: Storage Cleanup
+    automated: true
+  - id: TC-PR-LOGOUT-002
+    title: Audit Trail
+    automated: true
+  - id: TC-PR-LOGOUT-003
+    title: Cookie Deletion
+    automated: true

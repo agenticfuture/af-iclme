@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "artifact_type": "test_report",
+    "layer": "L3",
+    "change_id": "CHG-024"
+  },
+  "results": {
+    "python_compile_changed_backend": "passed",
+    "services_api_path_scan": "passed",
+    "embed_route_path_scan": "passed",
+    "tsc_service_gen_saas": "failed_unrelated_existing_errors",
+    "tsc_service_gen_ai_chatbot": "failed_unrelated_existing_errors"
+  },
+  "notes": [
+    "TypeScript checks fail due to many pre-existing unrelated repository errors in auth/organization/agent modules.",
+    "Changed files are focused on services/embed/playground and backend service/chat context wiring."
+  ]
+}

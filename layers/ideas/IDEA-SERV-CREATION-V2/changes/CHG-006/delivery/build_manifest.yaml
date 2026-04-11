@@ -1,0 +1,7 @@
+build_manifest:
+  chg_key: CHG-006
+  artifacts:
+    - app/ingress/api/main.py
+    - ui-apps/service-gen-saas/app/dashboard/services/new/page.tsx
+    - capabilities/service/caps/create_service/*
+  timestamp: "2026-02-17T18:25:00Z"

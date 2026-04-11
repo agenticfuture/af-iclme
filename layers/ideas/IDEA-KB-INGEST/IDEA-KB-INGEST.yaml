@@ -1,0 +1,22 @@
+meta:
+  artifact_type: idea
+
+idea:
+  idea_key: IDEA-KB-INGEST
+  title: Knowledge Base Ingestion for Service Wizard
+  description: Implement Step 3 as a multi-file upload flow integrated with MinIO. Store files under tenant-org namespaces.
+  domains:
+    - knowledge_base
+    - storage
+  types:
+    - functional
+    - architectural
+  priority: high
+  initial_risk: medium
+  spiral_stage: IDEA
+
+success_metrics:
+  - metric: ingestion_latency
+    target: "Multi-file upload completed under 5 seconds for 10MB total."
+  - metric: data_isolation
+    target: "Files stored correctly under /tenant/org/service path."

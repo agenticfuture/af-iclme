@@ -1,0 +1,37 @@
+meta:
+  artifact_type: change_spec
+  layer: L8
+
+change:
+  change_key: CHG-021
+  description: Execute in-container validation and migration using docker-compose service context and /app/.venv/bin/uv.
+  affected_layers:
+    - L0
+    - L1
+    - L2
+    - L3
+    - L4
+    - L5
+    - L6
+    - L7
+    - L8
+
+requirements:
+  functional:
+    - Read docker-compose.generated.yml and identify execution service.
+    - Run required command(s) inside target container with /app/.venv/bin/uv.
+    - Confirm frontend service/bot creation sections remain present.
+  non_functional:
+    - Preserve existing onboarding flow behavior.
+    - Keep all changes scoped to ServiceGen workspace.
+
+required_tests:
+  - docker compose ps
+  - /app/.venv/bin/uv --version in service-gen-api
+  - alembic upgrade head + alembic current
+  - database schema verification for service.deployments.url
+
+success_criteria:
+  - DB migration head confirmed at 0002_add_deployment_url
+  - service.deployments contains url column
+  - Step 1/2 service and bot creation code paths remain present in frontend

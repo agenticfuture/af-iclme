@@ -1,0 +1,10 @@
+privacy_test_cases:
+  domain: Tenant Registration Privacy
+  version: "1.0"
+  cases:
+    - id: TC-PRV-TEN-REG-001
+      title: Consent Record Persistence
+    - id: TC-PRV-TEN-REG-002
+      title: Data Minimization Audit
+    - id: TC-PRV-TEN-REG-003
+      title: Tenant Isolation Verification

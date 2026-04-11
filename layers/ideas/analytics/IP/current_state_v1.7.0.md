@@ -1,0 +1,44 @@
+# Analytics Current State v1.7.0
+
+## Implemented
+- analytics backend domain scaffold
+- `GET /api/analytics/v1/overview`
+- `GET /api/analytics/v1/timeseries`
+- `GET /api/analytics/v1/services`
+- `GET /api/analytics/v1/sources`
+- `GET /api/analytics/v1/export`
+- SaaS analytics proxy route
+- live overview dashboard cards
+- live trend visual cards
+- service performance table
+- source health summary cards
+- source type and ingestion outcome breakdowns
+- recent ingestion failure panel
+- source inventory table
+- analytics JSON export action
+- analytics CSV export action
+- chatbot analytics adapter path through backend DB access
+- analytics security contract tests
+- analytics privacy contract tests
+- analytics Security test-plan/report/traceability docs
+- analytics Privacy test-plan/report/traceability docs
+
+## Not Yet Implemented
+- browser E2E for analytics page
+
+## Verification State
+- backend syntax: passed
+- frontend file smoke for overview: passed
+- frontend file smoke for timeseries: passed
+- frontend file smoke for service table: passed
+- frontend file smoke for source health panel: passed
+- frontend file smoke for export actions and proxy header forwarding: passed
+- `tests/test_analytics_overview_contract.py`: passed
+- `tests/test_analytics_timeseries_contract.py`: passed
+- `tests/test_analytics_services_contract.py`: passed
+- `tests/test_analytics_sources_contract.py`: passed
+- `tests/test_analytics_export_contract.py`: passed
+- `tests/test_analytics_security_contract.py`: passed
+- `tests/test_analytics_privacy_contract.py`: passed
+- live non-browser execution in normal `service-gen-api` container: passed
+- SaaS non-browser route/component integration check: passed

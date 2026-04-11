@@ -1,0 +1,6 @@
+assurance_report:
+  chg_key: CHG-007
+  verifiers:
+    - Antigravity AI
+  summary: "Fixed database integrity crash via targeted seeding of default IDs."
+  conclusion: "Integrity error resolved."

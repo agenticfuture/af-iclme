@@ -1,0 +1,15 @@
+id: security-spec-create-service
+title: Security Specification - Create Service
+iam:
+  roles_required: [tenant_admin, admin]
+  scoping: tenant_id_enforced
+ingestion_security:
+  malware_scan: required
+  max_file_size_mb: 50
+  ssrf_protection: enabled
+playground:
+  iframe_sandbox: [allow-scripts, allow-same-origin, allow-forms]
+  csp_restrictions: true
+agent_rbac:
+  granularity: service_scoped
+  enforcement_point: api_gateway

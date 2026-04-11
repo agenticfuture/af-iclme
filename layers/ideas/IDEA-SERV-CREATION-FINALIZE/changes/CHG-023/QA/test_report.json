@@ -1,0 +1,12 @@
+{
+  "meta": {
+    "artifact_type": "test_report",
+    "layer": "L3",
+    "change_id": "CHG-023"
+  },
+  "results": {
+    "finish_redirect_update": "passed",
+    "service_creation_step_preserved": "passed",
+    "chatbot_creation_step_preserved": "passed"
+  }
+}

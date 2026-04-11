@@ -1,0 +1,23 @@
+{
+    "test_report": {
+        "chg_key": "CHG-017",
+        "status": "passed",
+        "scenarios": [
+            {
+                "name": "Container Dependency Sync (UV)",
+                "result": "passed",
+                "details": "Verified 'minio' importability inside service-gen-api container after running 'uv add'."
+            },
+            {
+                "name": "Targeted Code Repair",
+                "result": "passed",
+                "details": "Fixed NameError (missing UUID import) in workflows/file.py confirmed by absence of crash in logs."
+            },
+            {
+                "name": "Connectivity Diagnostic",
+                "result": "passed",
+                "details": "Container script successfully connected to minio:9000 and listed buckets."
+            }
+        ]
+    }
+}

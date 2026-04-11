@@ -1,0 +1,9 @@
+meta:
+  artifact_type: post_deployment_review
+  layer: L8
+
+change_id: CHG-022
+observations:
+  - Promise-based params contract can impact other server pages during Next.js upgrades.
+improvement_suggestions:
+  - Add lint/custom codemod rule to flag synchronous `params.id` access in async server pages.

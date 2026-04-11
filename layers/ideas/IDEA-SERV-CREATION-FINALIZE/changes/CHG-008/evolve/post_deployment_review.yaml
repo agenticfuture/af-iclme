@@ -1,0 +1,6 @@
+post_deployment_review:
+  chg_key: CHG-008
+  outcome: success
+  learnings:
+    - "Multi-step persistence reduces data loss during wizard abandonment."
+    - "Linking specific app containers (like service-gen-ai-chatbot) to a deployment record provides clear traceability."

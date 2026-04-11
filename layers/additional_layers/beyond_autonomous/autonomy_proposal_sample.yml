@@ -1,0 +1,8 @@
+meta:
+  artifact_type: autonomy_proposal
+  layer: L7
+
+proposal:
+  adjust_pricing_tier: true
+confidence: 0.82
+requires_governance_approval: true

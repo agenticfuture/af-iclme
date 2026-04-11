@@ -1,0 +1,21 @@
+meta:
+  artifact_type: build_manifest
+  layer: L2
+
+change_id: CHG-024
+status: success
+components_changed:
+  - capabilities/service/caps/create_service/api.py
+  - capabilities/chatbot/handle_request/api.py
+  - capabilities/chatbot/handle_request/workflow.py
+  - app/ingress/api/main.py
+  - ui-apps/service-gen-saas/app/dashboard/services/page.tsx
+  - ui-apps/service-gen-saas/app/dashboard/page.tsx
+  - ui-apps/service-gen-saas/app/dashboard/services/[id]/page.tsx
+  - ui-apps/service-gen-saas/app/dashboard/services/[id]/playground/page.tsx
+  - ui-apps/service-gen-saas/app/dashboard/services/[id]/success/page.tsx
+  - ui-apps/service-gen-saas/components/chatbot-embed.tsx
+  - ui-apps/service-gen-ai-chatbot/components/service-embed-chat.tsx
+  - ui-apps/service-gen-ai-chatbot/app/embed/[serviceId]/page.tsx
+  - ui-apps/service-gen-ai-chatbot/app/iframe/[serviceId]/page.tsx
+  - ui-apps/service-gen-ai-chatbot/app/widget.js/route.ts

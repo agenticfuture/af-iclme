@@ -1,0 +1,21 @@
+meta:
+  artifact_type: governance_directive
+  layer: L7
+  change_ref: CHG-001
+
+risk_assessment:
+  level: low
+  reason: New feature implementation, non-breaking for existing functionality.
+  data_sensitivity: low (service config data)
+
+approvals:
+  required: false
+  reason: Standard feature development within autonomous scope.
+
+autonomy_scope:
+  allowed_layers: [L1, L2, L3]
+  max_risk: low
+
+compliance_controls:
+  - require_test_evidence
+  - require_security_scan (optional for low risk)

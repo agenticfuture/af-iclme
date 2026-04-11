@@ -1,0 +1,24 @@
+api_spec:
+  endpoints:
+    - path: "/api/service/services"
+      method: "POST"
+      description: "Create a draft service"
+      request:
+        name: "string"
+        description: "string"
+        department: "string"
+      response:
+        service_id: "uuid"
+    - path: "/api/service/services/{id}/chatbot"
+      method: "POST"
+      description: "Assign/Create a chatbot for a service"
+      request:
+        name: "string"
+        persona: "object"
+      response:
+        chatbot_id: "uuid"
+    - path: "/api/service/services/{id}/deploy"
+      method: "POST"
+      description: "Activate service and trigger deployment"
+      response:
+        status: "success"

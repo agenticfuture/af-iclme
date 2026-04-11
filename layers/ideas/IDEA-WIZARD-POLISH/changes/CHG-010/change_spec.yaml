@@ -1,0 +1,20 @@
+meta:
+  artifact_type: change_spec
+
+change:
+  chg_key: CHG-010
+  idea_key: IDEA-WIZARD-POLISH
+  title: wizard-ui-polishing-coming-soon
+  impacted_layers:
+    - L1: Product (UX/UI)
+  required_artifacts:
+    - change_spec.yaml
+    - design_doc.md
+  security_requirements:
+    - none
+  rollback_strategy:
+    - Revert `page.tsx` UI changes.
+  success_criteria:
+    - Buttons disabled.
+    - Fields blurred.
+    - Tags added.

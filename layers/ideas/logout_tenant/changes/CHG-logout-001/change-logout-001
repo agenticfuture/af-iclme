@@ -1,0 +1,18 @@
+# Change Description: CHG-logout-001
+
+## 1. Metadata
+- **Change ID**: CHG-logout-001
+- **Name**: Specification Generation for `logout_tenant`
+- **Idea Name**: logout_tenant
+- **Date**: 2026-02-27
+
+## 2. Description
+Generated a full suite of specification and verification artifacts for the `logout_tenant` feature. These documents define the sessions termination flow, client-side cleanup, and threat mitigation strategies.
+
+## 3. Impacted Components
+- **Auth Flow**: Added explicit logout termination requirements.
+- **Client Application**: Defined storage cleanup and redirect logic.
+- **Security & Privacy**: Documented token revocation (JTI blacklisting) and audit trail requirements.
+
+## 4. Rationale
+Ensures that the ServiceGen platform maintains a high security posture by preventing session persistence and protecting users against logout-based attacks (CSRF/Open Redirects).

@@ -1,0 +1,9 @@
+build_id: BUILD-SERV-FIX-DETAIL-20260218
+components:
+  - name: service-gen-saas
+    type: frontend
+    status: deployed
+  - name: service-capabilities
+    type: backend
+    status: deployed
+deployment_url: https://bot.servicegen.local/

@@ -1,0 +1,24 @@
+MULTI AGENT SPECS:
+  AGENT-1:
+  ref: >
+    - reference the content of the folder located at: 
+      - ./af-iclme/layers/QA/
+    - read the content of the files ending with *_sample.yml to get the spec of what is 
+      expected
+
+  AGENT-2:
+  ref: >
+    - reference the content of the folder located at: 
+      - ./af-iclme/layers/security/
+    - read the content of the files ending with *_sample.yml to get the spec of what is 
+      expected
+
+  AGENT-3:
+  ref: >
+    - reference the content of the folder located at: 
+      - ./af-iclme/layers/privacy/ 
+    - read the content of the files ending with *_sample.yml to get the spec of what is 
+      expected
+
+
+

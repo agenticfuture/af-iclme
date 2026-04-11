@@ -1,0 +1,28 @@
+{
+    "test_report": {
+        "chg_key": "CHG-019",
+        "status": "passed",
+        "scenarios": [
+            {
+                "name": "Prefect Functional Binding",
+                "result": "passed",
+                "details": "Moved @flow to standalone functions, resolving ParameterBindError."
+            },
+            {
+                "name": "Frontend ID Preservation",
+                "result": "passed",
+                "details": "Step 1/2 logic verified to skip creation if ID already exists (auto-save restoration)."
+            },
+            {
+                "name": "Direct Ingest Logic",
+                "result": "passed",
+                "details": "Step 3 correctly ingests valid input fields even if 'Add' was not clicked."
+            },
+            {
+                "name": "Next Button Validation",
+                "result": "passed",
+                "details": "Next button disabling logic reflects both added sources and current input validity."
+            }
+        ]
+    }
+}

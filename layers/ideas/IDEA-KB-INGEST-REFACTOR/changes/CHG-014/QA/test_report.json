@@ -1,0 +1,28 @@
+{
+    "test_report": {
+        "chg_key": "CHG-014",
+        "status": "passed",
+        "scenarios": [
+            {
+                "name": "Modular Routing",
+                "result": "passed",
+                "details": "Orchestrator correctly resolves FileIngestWorkflow and UrlIngestWorkflow based on source type."
+            },
+            {
+                "name": "Bulk Homogeneous Ingestion",
+                "result": "passed",
+                "details": "Batch of multiple files processed correctly via matching filename logic."
+            },
+            {
+                "name": "Heterogeneous Ingestion (Mixed Types)",
+                "result": "passed",
+                "details": "A single request with both File and URL sources is handled by their respective workflows."
+            },
+            {
+                "name": "Error Persistence",
+                "result": "passed",
+                "details": "Failure in one workflow doesn't block others; detailed results returned per source."
+            }
+        ]
+    }
+}

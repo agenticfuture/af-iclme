@@ -1,0 +1,5 @@
+suggestions:
+  - id: SUG-SERV-001
+    title: Automated Load Testing for ServiceDetailPage
+    description: Add JMeter or k6 tests to prevent performance regressions.
+    impact: high

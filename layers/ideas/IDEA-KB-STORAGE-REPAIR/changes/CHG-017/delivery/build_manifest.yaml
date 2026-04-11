@@ -1,0 +1,7 @@
+build_manifest:
+  chg_key: CHG-017
+  artifacts:
+    - capabilities/knowledge_base/caps/ingest/tasks.py
+    - capabilities/knowledge_base/caps/ingest/workflows/file.py
+    - capabilities/knowledge_base/caps/ingest/workflows/url.py
+  timestamp: "2026-02-17T21:10:00Z"

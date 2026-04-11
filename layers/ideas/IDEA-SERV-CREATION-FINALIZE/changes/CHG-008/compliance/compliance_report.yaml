@@ -1,0 +1,6 @@
+compliance_report:
+  chg_key: CHG-008
+  controls_verified:
+    - ID: PROD-WIZ-001
+      status: compliant
+      evidence: "Wizard successfully saves config to DB at each step."

@@ -1,0 +1,22 @@
+test_plan:
+  chg_key: CHG-006
+  scenarios:
+    - name: Successful Service Creation
+      steps:
+        - Trigger Step 1 wizard
+        - Verify `service_id` is received
+        - Verify DB record has status `draft`
+    - name: Successful Chatbot Creation
+      steps:
+        - Trigger Step 2 wizard
+        - Verify `chatbot_id` is received
+        - Verify Chatbot is linked to `service_id`
+    - name: Deployment and Redirection
+      steps:
+        - Finish wizard
+        - Verify Service status becomes `active`
+        - Verify redirect to `/dashboard/services/{id}/playground`
+    - name: Error Resilience
+      steps:
+        - Restart API
+        - Verify NO `NoReferencedTableError` in logs

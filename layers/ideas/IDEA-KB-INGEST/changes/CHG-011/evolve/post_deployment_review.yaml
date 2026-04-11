@@ -1,0 +1,6 @@
+post_deployment_review:
+  chg_key: CHG-011
+  outcome: success
+  learnings:
+    - "Structured multipart (JSON + Files) is more flexible than pure binary uploads for complex ingestion tasks."
+    - "Early bucket creation in the task layer prevents runtime failures in fresh environments."

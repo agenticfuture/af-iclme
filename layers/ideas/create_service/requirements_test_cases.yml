@@ -1,0 +1,19 @@
+id: requirements-test-cases-create-service
+title: Functional Test Cases - Create Service
+version: "1.0"
+test_cases:
+  - id: TC-SERV-FUN-001
+    title: Auto-Save Verification
+    priority: high
+  - id: TC-SERV-FUN-002
+    title: AI Suggestion Check
+    priority: medium
+  - id: TC-SERV-FUN-003
+    title: File Ingestion Enqueue
+    priority: high
+  - id: TC-SERV-FUN-004
+    title: Deployment Flow
+    priority: critical
+  - id: TC-SERV-FUN-005
+    title: Playground Switcher
+    priority: medium

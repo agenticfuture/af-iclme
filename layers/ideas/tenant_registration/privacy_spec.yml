@@ -1,0 +1,10 @@
+privacy_spec:
+  title: Tenant Registration Privacy
+  version: "1.0"
+  traceability: PR-SYS-002, PR-SYS-003
+  principles:
+    - consent_capture
+    - data_minimization
+    - tenant_isolation_initialization
+  retention:
+    unverified_account_purge_hours: 48

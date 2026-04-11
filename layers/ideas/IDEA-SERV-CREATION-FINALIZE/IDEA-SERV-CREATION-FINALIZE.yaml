@@ -1,0 +1,25 @@
+meta:
+  artifact_type: idea
+
+idea:
+  idea_key: IDEA-SERV-CREATION-FINALIZE
+  title: Finalize Service Creation Wizard & Deployment Integration
+  description: Correct the multi-step persistence in the wizard, fix Step 2 (Bot creation) saving, and implement actual deployment integration with the chatbot engine.
+  domains:
+    - service
+    - bot
+    - product
+  types:
+    - integration
+    - functional
+  priority: high
+  initial_risk: medium
+  spiral_stage: IDEA
+
+success_metrics:
+  - metric: wizard_completion
+    target: "Successful end-to-end traversal from Step 1 to Step 5"
+  - metric: deployment_status
+    target: "Service status set to ACTIVE and Deployment record created"
+  - metric: playground_access
+    target: "Redirection to playground with correct service context"

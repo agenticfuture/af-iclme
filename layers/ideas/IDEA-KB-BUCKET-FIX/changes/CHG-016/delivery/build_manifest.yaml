@@ -1,0 +1,6 @@
+build_manifest:
+  chg_key: CHG-016
+  artifacts:
+    - capabilities/knowledge_base/caps/ingest/tasks.py
+    - .env.local
+  timestamp: "2026-02-17T20:55:00Z"

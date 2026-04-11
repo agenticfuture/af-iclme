@@ -1,0 +1,71 @@
+# Analytics Current State v1.9.0
+
+## Implemented
+- analytics backend domain scaffold
+- `GET /api/analytics/v1/overview`
+- `GET /api/analytics/v1/timeseries`
+- `GET /api/analytics/v1/services`
+- `GET /api/analytics/v1/sources`
+- `GET /api/analytics/v1/activity`
+- `GET /api/analytics/v1/export`
+- SaaS analytics proxy route
+- live overview dashboard cards
+- live trend visual cards
+- service performance table
+- activity feed with category and failures-only filters
+- activity drilldown actions to service details and playground
+- source health summary cards
+- source type and ingestion outcome breakdowns
+- recent ingestion failure panel
+- source inventory table
+- analytics JSON export action
+- analytics CSV export action
+- analytics export dataset selector
+- analytics days filter
+- analytics service filter
+- analytics clear-filters action
+- analytics drilldowns to service details and playground
+- analytics service filters:
+  - `service_id`
+  - `service_status`
+  - `deployment_status`
+- analytics source filters:
+  - `service_id`
+  - `source_type`
+  - `ingestion_status`
+- analytics activity filters:
+  - `service_id`
+  - `category`
+  - `only_failures`
+- analytics `full_bundle` JSON export variant
+- analytics `service_health` CSV export variant
+- analytics `recent_failures` CSV export variant
+- chatbot analytics adapter path through backend DB access
+- analytics security contract tests
+- analytics privacy contract tests
+- analytics Security test-plan/report/traceability docs
+- analytics Privacy test-plan/report/traceability docs
+
+## Not Yet Implemented
+- browser E2E for analytics page
+- chart point drilldown views
+
+## Verification State
+- backend syntax: passed
+- frontend file smoke for overview: passed
+- frontend file smoke for timeseries: passed
+- frontend file smoke for service table: passed
+- frontend file smoke for source health panel: passed
+- activity backend syntax and route wiring: passed
+- live SaaS-proxy activity verification: passed
+- live SaaS-proxy focused export verification: passed
+- `tests/test_analytics_overview_contract.py`: passed
+- `tests/test_analytics_timeseries_contract.py`: passed
+- `tests/test_analytics_services_contract.py`: passed
+- `tests/test_analytics_sources_contract.py`: passed
+- `tests/test_analytics_export_contract.py`: passed
+- `tests/test_analytics_security_contract.py`: passed
+- `tests/test_analytics_privacy_contract.py`: passed
+- `tests/test_analytics_activity_contract.py`: added and syntax-checked
+- targeted filter contract reruns: passed
+- live non-browser execution in normal `service-gen-api` container: passed

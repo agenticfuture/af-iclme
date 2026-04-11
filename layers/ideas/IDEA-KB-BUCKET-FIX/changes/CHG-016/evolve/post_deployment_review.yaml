@@ -1,0 +1,6 @@
+post_deployment_review:
+  chg_key: CHG-016
+  outcome: success
+  learnings:
+    - "Critical dependencies like storage backends should always have explicit configuration in .env.local even with defaults."
+    - "Traceable logging is the best defense against 'hidden' failures in background tasks."

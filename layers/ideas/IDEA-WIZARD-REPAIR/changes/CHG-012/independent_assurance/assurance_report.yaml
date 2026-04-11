@@ -1,0 +1,6 @@
+assurance_report:
+  chg_key: CHG-012
+  verifiers:
+    - Antigravity AI
+  summary: "Relocated wizard state fix implemented correctly using standard React patterns. Rehydration is multi-step resilient."
+  conclusion: "Wizard stability restored."

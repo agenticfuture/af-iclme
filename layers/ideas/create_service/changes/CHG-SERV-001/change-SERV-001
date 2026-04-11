@@ -1,0 +1,18 @@
+# Change Description: CHG-SERV-001
+
+## Idea
+`create_service`
+
+## Summary
+Generated comprehensive specification docs and test cases for the Service Creation Wizard.
+
+## Details
+- **Requirements**: Defined the 5-step wizard flow, auto-save logic, and playground functionality.
+- **Privacy**: Implemented PII redaction requirements for knowledge base ingestion and secure agent management.
+- **Security**: Defined API authorization, SSRF protection for URLs, and playground iframe sandboxing.
+- **Risks**: Addressed prompt injection, data poisoning, and SSRF risks with specific mitigations.
+- **Test Cases**: Provided functional, security, privacy, and risk-based verification steps.
+
+## Artifacts Generated
+- Section 1: Spec Docs and Test Cases (MD & YAML).
+- Section 2: Prompts, Change Description, and Walkthrough.

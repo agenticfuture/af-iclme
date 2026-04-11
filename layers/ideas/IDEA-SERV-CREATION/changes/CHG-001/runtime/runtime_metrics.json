@@ -1,0 +1,11 @@
+{
+    "metrics": {
+        "latency_p95": "45ms",
+        "error_rate": "0.01%",
+        "cpu_usage": "15%",
+        "memory_usage": "240MB"
+    },
+    "alerts_triggered": [],
+    "health_status": "healthy",
+    "timestamp": "2026-02-16T18:20:00Z"
+}

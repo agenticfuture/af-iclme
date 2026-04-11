@@ -1,0 +1,18 @@
+id: security-spec-logout-tenant
+title: Security Specification - Tenant Logout
+specifications:
+  - id: SEC-LOGOUT-001
+    title: Token Revocation
+    method: client_deletion_and_jti_blacklist
+  - id: SEC-LOGOUT-002
+    title: All-Device Logout
+    feature: optional_on_request
+  - id: SEC-LOGOUT-003
+    title: CSRF Protection
+    enabled: true
+  - id: SEC-LOGOUT-004
+    title: Redirect Whitelisting
+    enabled: true
+  - id: SEC-LOGOUT-005
+    title: Secure Cookie Expire
+    flags: [Secure, HttpOnly, SameSite]

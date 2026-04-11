@@ -1,0 +1,22 @@
+meta:
+  artifact_type: governance_directive
+  layer: L7
+
+risk_assessment:
+  level: medium
+  data_sensitivity: possible_pii
+
+constraints:
+  - require_privacy_review
+  - require_security_scan
+  - require_evidence_bundle
+
+approvals:
+  required: true
+  approvers:
+    - privacy_officer
+    - security_lead
+
+autonomy_scope:
+  allowed_layers: []
+  max_risk: low

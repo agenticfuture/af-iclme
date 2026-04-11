@@ -1,0 +1,5 @@
+{
+    "event": "security.scan_completed",
+    "chg_key": "CHG-007",
+    "timestamp": "2026-02-17T18:26:00Z"
+}

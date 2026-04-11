@@ -1,0 +1,4 @@
+tls:
+  certificates:
+    - certFile: ./af-iclme/certs/_wildcard.af-iclme.local.pem
+      keyFile: ./af-iclme/certs/_wildcard.af-iclme.local-key.pem

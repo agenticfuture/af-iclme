@@ -1,0 +1,15 @@
+meta:
+  artifact_type: governance_directive
+
+governance:
+  chg_key: CHG-014
+  risk_level: low
+  approvals_required:
+    - technical_architect
+  autonomy_scope:
+    - capability_internal_refactor
+  compliance_controls:
+    - ID: ARCH-MOD-001
+      description: "Capability must use Orchestration (workflow) pattern."
+    - ID: ARCH-DRY-001
+      description: "Repetitive ingestion logic must be abstracted into base classes or shared tasks."

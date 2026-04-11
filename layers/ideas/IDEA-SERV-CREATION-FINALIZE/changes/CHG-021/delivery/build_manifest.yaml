@@ -1,0 +1,12 @@
+meta:
+  artifact_type: build_manifest
+  layer: L2
+
+change_id: CHG-021
+status: success
+runtime_commands:
+  - docker compose -f docker-compose.generated.yml ps
+  - docker compose -f docker-compose.generated.yml exec service-gen-api sh -lc '/app/.venv/bin/uv --version'
+  - docker compose -f docker-compose.generated.yml exec service-gen-api sh -lc 'cd /app/capabilities/db && /app/.venv/bin/uv run alembic upgrade head'
+  - docker compose -f docker-compose.generated.yml exec service-gen-api sh -lc 'cd /app/capabilities/db && /app/.venv/bin/uv run alembic current'
+  - docker compose -f docker-compose.generated.yml exec postgres sh -lc 'psql -U postgres -d servicegen -c "\\d service.deployments"'

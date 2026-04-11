@@ -1,0 +1,14 @@
+meta:
+  artifact_type: architecture_design
+  layer: L1
+
+components:
+  - summarization_service
+  - storage_adapter
+
+data_flow:
+  - upload -> ai_processor -> result_store
+
+api_changes:
+  - endpoint: /summarize
+    method: POST

@@ -1,0 +1,342 @@
+document:
+  title: ServiceGen
+  type: Business Requirements Document (BRD)
+  version: "1.0"
+  prepared_by: Business Analysis Function
+  status: Draft – Stakeholder Review
+
+executive_summary:
+  description: >
+    ServiceGen is a multi-tenant, AI-powered Software-as-a-Service (SaaS)
+    platform designed to enable organizations to deploy, manage,
+    monetize, and optimize omnichannel AI customer-service solutions.
+  phase: Phase 1
+  included_capabilities:
+    - Tenant lifecycle management
+    - Service lifecycle management
+    - Chatbot management
+    - Data ingestion and embeddings
+    - Omnichannel integrations
+    - Billing and subscription management
+    - Social network integrations
+    - Marketing and growth automation
+
+business_objectives:
+  - Enable organizations to self-onboard and configure AI customer-service solutions.
+  - Provide multi-tenant isolation and secure data handling.
+  - Support omnichannel communication across digital platforms.
+  - Offer tiered subscription monetization.
+  - Provide marketing automation to support customer growth.
+  - Ensure compliance with Canadian privacy regulations (PIPEDA baseline).
+  - Provide operational transparency and observability.
+
+stakeholders:
+  - role: Platform Owner
+    interest: Revenue growth and scalability
+  - role: Tenant Administrator
+    interest: Configure and manage services
+  - role: End Users (Agents)
+    interest: Operate chatbot and channels
+  - role: Finance Team
+    interest: Subscription billing accuracy
+  - role: Compliance Officer
+    interest: Data governance and privacy adherence
+  - role: Development Team
+    interest: Clear and traceable requirements
+  - role: Marketing Team
+    interest: Campaign execution and lead management
+
+scope:
+  in_scope:
+    - Tenant Management
+    - Service Management
+    - Chatbot Core Engine
+    - Data Source Management
+    - Channel Management
+    - Billing & Subscription Engine
+    - Social Media Integrations
+    - Marketing & CRM Capabilities
+  out_of_scope:
+    - Advanced AI model fine-tuning
+    - Multi-region deployment replication
+    - Global tax automation engine
+    - Deep ERP financial integrations
+    - Enterprise SAML/Advanced SSO configuration
+    - Advanced predictive analytics
+
+requirements:
+
+  tenant_management:
+    - id: BR-TEN-001
+      title: Tenant Registration
+      description: Allow an organization to register and create a tenant account.
+      business_rules:
+        - Each tenant must have a unique identifier.
+        - One user must be assigned as initial Administrator.
+        - Email verification is mandatory.
+      acceptance_criteria:
+        - Tenant record is created in the system database.
+        - Administrator role is assigned.
+        - System confirms successful account creation.
+
+    - id: BR-TEN-002
+      title: Authentication
+      description: Authenticate users using secure token-based authentication.
+      business_rules:
+        - Authentication must issue a secure session token.
+        - All subsequent actions must be tenant-scoped.
+        - No cross-tenant data access permitted.
+
+    - id: BR-TEN-003
+      title: Tenant Configuration
+      description: Allow tenant administrators to configure organization details.
+      configurable_fields:
+        - Organization name
+        - Logo
+        - Default language
+        - Regulatory region
+
+    - id: BR-TEN-004
+      title: User Management
+      description: Allow administrators to manage users.
+      capabilities:
+        - Invite users via email
+        - Assign roles (Admin, Manager, Editor, Viewer)
+        - Revoke user access
+
+  service_management:
+    - id: BR-SRV-001
+      title: Create Service
+      description: Allow tenants to create one or more services.
+      required_fields:
+        - Name
+        - Description
+        - Status (Draft by default)
+
+    - id: BR-SRV-002
+      title: Modify Service
+      description: Allow updating service configuration.
+      updatable_components:
+        - Metadata
+        - Linked chatbot
+        - Associated data sources
+        - Associated channels
+
+    - id: BR-SRV-003
+      title: Archive Service
+      description: Allow archiving of services.
+      business_rule:
+        - Archived services cannot receive new traffic.
+
+  chatbot_management:
+    - id: BR-CHAT-001
+      title: Chatbot Configuration
+      configurable_parameters:
+        - Model type
+        - System prompt
+        - Temperature
+        - Primary language
+
+    - id: BR-CHAT-002
+      title: Automated Configuration Suggestion
+      based_on:
+        - Service industry
+        - Uploaded data sources
+        - Language selection
+
+    - id: BR-CHAT-003
+      title: Request Handling
+      steps:
+        - Receive inbound message
+        - Retrieve relevant embeddings
+        - Generate response
+        - Return structured output
+
+    - id: BR-CHAT-004
+      title: Conversation Storage
+      stored_fields:
+        - Message ID
+        - Service ID
+        - User ID
+        - Input text
+        - Output text
+        - Timestamp
+
+  data_source_management:
+    - id: BR-DS-001
+      title: Data Source Types
+      supported_types:
+        - PDF
+        - DOCX
+        - CSV
+        - Website
+        - API Endpoint
+        - Cloud Storage (MinIO/S3)
+
+    - id: BR-DS-002
+      title: Data Source Validation
+      validations:
+        - Validate file format
+        - Test API connection
+        - Confirm text extraction
+        - Confirm embedding creation
+
+    - id: BR-DS-003
+      title: Embedding Management
+      capabilities:
+        - Create embeddings
+        - Re-index content
+        - Delete embeddings
+        - Update embeddings
+
+  channel_management:
+    - id: BR-CH-001
+      title: Channel Types
+      supported_channels:
+        - Webchat
+        - Email
+        - SMS
+        - WhatsApp
+        - Slack
+        - Teams
+        - Facebook Messenger
+        - Instagram
+        - LinkedIn
+        - X (Twitter)
+        - Telegram
+
+    - id: BR-CH-002
+      title: Channel Deployment
+      capabilities:
+        - Credential validation
+        - Webhook testing
+        - Bot deployment
+        - Bot unpublishing
+
+  billing_and_subscription_engine:
+    - id: BR-BILL-001
+      title: Subscription Plans
+      plans:
+        - Free Tier
+        - Starter Tier
+        - Business Tier
+        - Enterprise Tier
+
+    - id: BR-BILL-002
+      title: Subscription Lifecycle
+      lifecycle_actions:
+        - Upgrade
+        - Downgrade
+        - Cancellation
+        - Reactivation
+
+    - id: BR-BILL-003
+      title: Payment Processing
+      integration:
+        provider: Stripe (or equivalent)
+      capabilities:
+        - Process recurring payments
+        - Store billing history
+        - Generate invoices
+
+    - id: BR-BILL-004
+      title: Usage Tracking
+      tracked_metrics:
+        - Number of agents
+        - Number of chatbot interactions
+        - Number of embeddings
+        - Channel message volume
+      business_rule:
+        - Overage billing applied when thresholds are exceeded.
+
+  marketing_and_growth_engine:
+    - id: BR-MKT-001
+      title: Campaign Management
+      capabilities:
+        - Campaign creation
+        - Audience segmentation
+        - Scheduling
+        - Performance tracking
+
+    - id: BR-MKT-002
+      title: Lead Capture
+      capabilities:
+        - Web form lead capture
+        - Chatbot-based qualification
+        - Storage in CRM data structure
+
+    - id: BR-MKT-003
+      title: Marketing Automation
+      capabilities:
+        - Event-triggered emails
+        - Drip campaigns
+        - Post-interaction follow-ups
+
+    - id: BR-MKT-004
+      title: Referral & Promotions
+      capabilities:
+        - Generate referral codes
+        - Track referral conversions
+        - Apply promotional discounts
+
+non_functional_requirements:
+  - id: NFR-01
+    title: Multi-Tenancy Isolation
+    requirement: All data must be strictly scoped to tenant_id.
+
+  - id: NFR-02
+    title: Performance
+    targets:
+      chat_response_p95_seconds: 3
+      payment_processing_p95_seconds: 2
+      service_creation_seconds: 1
+
+  - id: NFR-03
+    title: Availability
+    uptime_target_percent: 99.5
+
+  - id: NFR-04
+    title: Security
+    controls:
+      - JWT authentication
+      - HTTPS enforced
+      - AES-256 encryption at rest
+      - Secure webhook validation
+      - PCI-compliant payment handling
+
+  - id: NFR-05
+    title: Privacy
+    controls:
+      - PIPEDA baseline compliance
+      - Configurable data retention
+      - PII masking before LLM ingestion
+      - Audit logging
+
+  - id: NFR-06
+    title: Observability
+    logged_metrics:
+      - Chat performance
+      - Embedding failures
+      - Billing events
+      - Marketing metrics
+
+assumptions:
+  - Stripe will be used as primary billing provider.
+  - Vector database will support real-time embedding retrieval.
+  - Tenants will manage their own channel credentials.
+
+risks:
+  - risk: Cross-tenant data exposure
+    mitigation: Strict row-level security
+  - risk: Billing miscalculation
+    mitigation: Usage logging validation
+  - risk: Channel API changes
+    mitigation: Modular connector architecture
+  - risk: Compliance violations
+    mitigation: Audit logging and retention controls
+
+approvals_required:
+  - Product Owner
+  - CTO
+  - Compliance Lead
+  - Finance Lead

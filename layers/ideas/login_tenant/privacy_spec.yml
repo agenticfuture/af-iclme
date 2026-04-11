@@ -1,0 +1,21 @@
+id: privacy-spec-login-tenant
+title: Privacy Specification - Tenant Login
+framework: PIPEDA
+controls:
+  - id: PR-LOGIN-001
+    title: Data Minimization
+    assets: [Email]
+  - id: PR-LOGIN-002
+    title: Consent Awareness
+    ledger_link: consent_ledger
+  - id: PR-LOGIN-003
+    title: Retention Policy
+    months: 24
+  - id: PR-LOGIN-004
+    title: Immutable Audit logs
+    sensitive_data: [Password, SessionToken]
+  - id: PR-LOGIN-005
+    title: PII Masking
+    target: [Diagnostic Logs]
+residency:
+  primary: Canada

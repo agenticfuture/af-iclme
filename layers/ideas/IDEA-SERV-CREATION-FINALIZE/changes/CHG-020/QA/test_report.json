@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "artifact_type": "test_report",
+    "layer": "L3",
+    "change_id": "CHG-020"
+  },
+  "results": {
+    "syntax_compile": "passed",
+    "frontend_flow_regression_check": "passed",
+    "notes": [
+      "Confirmed service creation and chatbot creation sections remain in wizard step 1/2.",
+      "Deploy endpoint now returns URL in response model."
+    ]
+  },
+  "coverage": "n/a"
+}

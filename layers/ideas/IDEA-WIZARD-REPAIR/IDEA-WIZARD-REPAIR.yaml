@@ -1,0 +1,19 @@
+meta:
+  artifact_type: idea
+
+idea:
+  idea_key: IDEA-WIZARD-REPAIR
+  title: Fix Service ID persistence in Wizard
+  description: Prevent 'Service ID missing' errors by persisting serviceId and chatbotId in sessionStorage.
+  domains:
+    - frontend
+    - state_management
+  types:
+    - bugfix
+  priority: critical
+  initial_risk: low
+  spiral_stage: IDEA
+
+success_metrics:
+  - metric: persistence
+    target: "Service ID and Chatbot ID survive page refresh during wizard flow."

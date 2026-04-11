@@ -1,0 +1,20 @@
+{
+  "meta": {
+    "artifact_type": "test_report",
+    "layer": "L3",
+    "change_id": "CHG-021"
+  },
+  "results": {
+    "compose_service_check": "passed",
+    "uv_path_check": "passed",
+    "migration_upgrade": "passed",
+    "migration_current": "passed",
+    "db_schema_check": "passed",
+    "frontend_section_guard": "passed"
+  },
+  "notes": [
+    "alembic current returned 0002_add_deployment_url (head)",
+    "service.deployments includes url column",
+    "wizard step 1 and step 2 create-service/create-chatbot blocks remain present"
+  ]
+}

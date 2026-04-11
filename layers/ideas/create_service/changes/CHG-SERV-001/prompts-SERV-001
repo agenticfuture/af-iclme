@@ -1,0 +1,25 @@
+# PROMPT: Generate Specifications for `create_service`
+
+**Objective**: Generate Section 1 specification documents for the `create_service` feature in ServiceGen.
+
+**Context**:
+ServiceGen is a multi-tenant SaaS for creating AI services. The `create_service` feature is a 5-step wizard followed by a deployment to a playground.
+
+**Entities**:
+1. `Service`: Basic metadata (Name, Dept).
+2. `Chatbot`: AI persona and system prompt.
+3. `Datasource`: Knowledge base files/URLs.
+4. `HumanAgent`: Oversight users.
+5. `Playground`: Testing environment (Iframe/Script).
+
+**Requirements**:
+- Zero Trust Security.
+- PIPEDA Privacy Compliance.
+- Asynchronous knowledge ingestion jobs.
+- Direct Ingest logic (process unsaved inputs on Finish).
+
+**Instructions**:
+- Create `requirements_spec`, `privacy_spec`, `security_spec`, and `risks_spec`.
+- Create corresponding test cases for each.
+- Use both Markdown (.md) and YAML (.yml) formats.
+- Align with existing ServiceGen BRD and Privacy/Security templates.

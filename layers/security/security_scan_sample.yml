@@ -1,0 +1,7 @@
+meta:
+  artifact_type: security_scan
+  layer: L5
+
+tool: snyk
+vulnerabilities: []
+status: passed

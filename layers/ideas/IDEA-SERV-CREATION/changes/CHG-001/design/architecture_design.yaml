@@ -1,0 +1,17 @@
+meta:
+  artifact_type: architecture_design
+  layer: L1
+  change_ref: CHG-001
+
+components:
+  - frontend: NewServicePage (wizard step form)
+  - backend: ServiceCapability (onboard capability)
+  - database: Service table (Postgres)
+
+data_flow:
+  - User fills wizard -> Auto-save triggers (local/backend?) -> Final Submit -> POST /api/service/onboard/service -> Backend validates -> Creates Service -> Returns ID -> Redirect to Dashboard.
+
+auto_save_strategy:
+  - Trigger on step change.
+  - Potential endpoint: POST /api/service/onboard/draft (or reuse main endpoint with 'draft' status).
+  - For MVP: Auto-save to local storage or simplified backend draft if possible. Given prompt "ensure changes are saved", reliable backend persistence is better.

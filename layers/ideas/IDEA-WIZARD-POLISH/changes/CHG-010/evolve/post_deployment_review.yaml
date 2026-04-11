@@ -1,0 +1,6 @@
+post_deployment_review:
+  chg_key: CHG-010
+  outcome: success
+  learnings:
+    - "Early visual feedback for coming soon features reduces user friction."
+    - "Tailwind 'blur' and 'pointer-events-none' are effective for disabling entire form sections."

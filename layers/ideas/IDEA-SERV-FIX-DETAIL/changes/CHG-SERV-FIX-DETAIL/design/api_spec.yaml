@@ -1,0 +1,20 @@
+meta:
+  artifact_type: api_spec
+  layer: L1
+
+endpoints:
+  - path: /api/service/services/{service_id}/deploy
+    method: POST
+    description: Finalizes service creation and starts bot deployment.
+    input:
+      - chatbot_id: string
+    output:
+      - success: boolean
+      - bot_url: string
+
+  - path: /api/embeddings/store
+    method: POST
+    description: Internal API to store chunks in Qdrant.
+    input:
+      - service_id: string
+      - data: list[chunk]

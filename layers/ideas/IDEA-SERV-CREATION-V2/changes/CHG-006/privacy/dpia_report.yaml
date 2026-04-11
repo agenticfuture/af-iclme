@@ -1,0 +1,12 @@
+meta:
+  artifact_type: dpia_report
+privacy_assessment:
+  chg_key: CHG-006
+  data_impact: low
+  data_types:
+    - service_metadata
+    - chatbot_persona
+  risks:
+    - data_leakage_between_tenants
+  mitigations:
+    - strict_tenant_id_filtering_in_db_queries

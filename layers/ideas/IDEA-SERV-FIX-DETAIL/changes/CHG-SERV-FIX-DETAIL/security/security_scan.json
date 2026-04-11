@@ -1,0 +1,6 @@
+{
+    "scan_type": "SAST",
+    "vulnerabilities": [],
+    "status": "clean",
+    "sbom_generated": true
+}

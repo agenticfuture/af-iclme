@@ -1,0 +1,22 @@
+meta:
+  artifact_type: idea
+
+idea:
+  idea_key: IDEA-KB-INGEST-REFACTOR
+  title: Modular Multi-Type Knowledge Ingestion
+  description: Refactor KB ingestion to use a scalable workflow-orchestrated architecture supporting multiple source types (files, URLs, etc.).
+  domains:
+    - Knowledge Base
+    - Architecture
+  types:
+    - refactor
+    - feature-enablement
+  priority: high
+  initial_risk: low
+  spiral_stage: IDEA
+
+success_metrics:
+  - metric: modularity
+    target: "Supports adding new ingestion types without modifying the core handler."
+  - metric: orchestration
+    target: "Uses a dedicated workflow layer for process logic."

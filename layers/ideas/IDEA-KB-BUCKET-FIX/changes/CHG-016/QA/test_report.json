@@ -1,0 +1,23 @@
+{
+    "test_report": {
+        "chg_key": "CHG-016",
+        "status": "passed",
+        "scenarios": [
+            {
+                "name": "Bucket Auto-Creation",
+                "result": "passed",
+                "details": "Verified that 'servicegen-knowledge' bucket is created if absent."
+            },
+            {
+                "name": "Connectivity Logging",
+                "result": "passed",
+                "details": "Logs confirm connection attempts to the endpoint specified in .env.local."
+            },
+            {
+                "name": "File Persistence",
+                "result": "passed",
+                "details": "Files are correctly uploaded to the partitioned path within the bucket."
+            }
+        ]
+    }
+}

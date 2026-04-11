@@ -1,0 +1,6 @@
+compliance_report:
+  chg_key: CHG-016
+  controls_verified:
+    - ID: DATA-REST-001
+      status: compliant
+      evidence: "MinIO bucket initialization verified with explicit creation logic."

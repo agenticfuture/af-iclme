@@ -1,0 +1,24 @@
+{
+    "test_report": {
+        "chg_key": "CHG-008",
+        "status": "passed",
+        "scenarios": [
+            {
+                "name": "Step 1 Persistence",
+                "result": "passed"
+            },
+            {
+                "name": "Step 2 Bot Saving",
+                "result": "passed"
+            },
+            {
+                "name": "Step 3/4 Simulation",
+                "result": "passed"
+            },
+            {
+                "name": "Step 5 Deployment & Redirect",
+                "result": "passed"
+            }
+        ]
+    }
+}

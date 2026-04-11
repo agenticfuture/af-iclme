@@ -1,0 +1,13 @@
+meta:
+  artifact_type: test_definitions
+  layer: L1
+
+tests:
+  unit:
+    - test_summary_length
+  integration:
+    - test_file_upload_flow
+  regression:
+    - test_previous_features
+  e2e:
+    - test_full_summary_pipeline

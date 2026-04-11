@@ -1,0 +1,20 @@
+risk_spec:
+  title: Tenant Registration Risk Assessment
+  version: "1.0"
+  risks:
+    - id: RISK-TEN-REG-2026-001
+      title: Automated Registration Bot Abuse
+      inherent_risk: critical
+      controls:
+        - captcha
+        - rate_limiting
+        - deferred_resource_allocation
+      residual_risk: low
+    - id: RISK-TEN-REG-2026-002
+      title: Email Spoofing / Unauthorized Activation
+      inherent_risk: moderate
+      controls:
+        - high_entropy_tokens
+        - short_expiration_48h
+        - single_use_token
+      residual_risk: low

@@ -1,0 +1,13 @@
+meta:
+  artifact_type: compliance_report
+  layer: L6
+
+change_id: CHG-022
+status: passed
+checks:
+  - name: route_runtime_contract
+    result: passed
+    evidence: params unwrapped with await before property access.
+  - name: flow_preservation
+    result: passed
+    evidence: wizard step 1/2 create-service and create-chatbot paths remain intact.

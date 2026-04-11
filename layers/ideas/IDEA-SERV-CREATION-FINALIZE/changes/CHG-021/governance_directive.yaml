@@ -1,0 +1,24 @@
+meta:
+  artifact_type: governance_directive
+  layer: L7
+
+risk_assessment:
+  level: medium
+
+constraints:
+  - command_execution_must_use_compose_service_context
+  - uv_must_run_from_container_venv_path
+  - preserve_frontend_id_generation_flow
+
+approvals:
+  required: true
+  approvers:
+    - platform_owner
+    - data_owner
+
+autonomy_scope:
+  allowed_layers:
+    - L0
+    - L2
+    - L3
+  max_risk: medium

@@ -1,0 +1,9 @@
+meta:
+  artifact_type: improvement_suggestion
+  layer: L8
+
+based_on_metrics:
+  latency_p95: 210
+suggestion:
+  - optimize_token_usage
+priority: medium

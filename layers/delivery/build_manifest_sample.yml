@@ -1,0 +1,7 @@
+meta:
+  artifact_type: build_manifest
+  layer: L2
+
+image: servicegen:v1.4.0
+commit: abc123
+build_status: success

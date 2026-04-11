@@ -1,0 +1,14 @@
+meta:
+  artifact_type: governance_directive
+
+governance:
+  chg_key: CHG-010
+  risk_level: low
+  approvals_required:
+    - automated
+  autonomy_scope:
+    - ui_polishing
+  compliance_controls:
+    - ux_standard_compliance
+  audit_requirements:
+    - code_review

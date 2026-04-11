@@ -1,0 +1,8 @@
+risk_test_cases:
+  domain: Tenant Registration Risks
+  version: "1.0"
+  cases:
+    - id: TC-RISK-TEN-REG-001
+      title: Mitigation - Bot Abuse (Rate Limit)
+    - id: TC-RISK-TEN-REG-002
+      title: Mitigation - Token Entropy & Expiration

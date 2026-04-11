@@ -1,0 +1,7 @@
+{
+    "privacy_test": {
+        "chg_key": "CHG-006",
+        "status": "validated",
+        "tenant_isolation": "verified"
+    }
+}

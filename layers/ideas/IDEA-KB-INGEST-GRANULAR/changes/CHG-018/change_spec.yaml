@@ -1,0 +1,18 @@
+meta:
+  artifact_type: change_spec
+
+change:
+  chg_key: CHG-018
+  idea_key: IDEA-KB-INGEST-GRANULAR
+  title: pivot-to-granular-ingest-api
+  impacted_layers:
+    - L1: Product (API, UI)
+  required_artifacts:
+    - architecture.md
+    - walkthrough.md
+  rollback_strategy:
+    - Revert backend endpoints to previous bulk state.
+  success_criteria:
+    - Separate endpoints for file/url working correctly.
+    - Files uploaded to MinIO are visible in UI.
+    - Wizard buttons correctly reflect valid states.

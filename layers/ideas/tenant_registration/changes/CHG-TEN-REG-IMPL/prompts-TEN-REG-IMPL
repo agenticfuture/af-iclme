@@ -1,0 +1,39 @@
+AGENT-1 EXECUTION PROMPT (IMPLEMENTATION)
+
+ROLE:
+- Implement tenant_registration domain based on the produced implementation plan
+
+OBJECTIVE:
+- Deliver runnable tenant registration capability with tests, validations, and traceability
+- Validate execution inside Docker containers (service-gen-api, service-gen-saas)
+- Ensure e2e onboarding path works
+
+INPUT:
+- IDEA-NAME=tenant_registration
+- DOMAIN=tenant
+- implementation_plan: implemetation_plan_v1.0.0.md
+- tenant_registration specs:
+  - requirements_spec(.md/.yml)
+  - requirements_test_cases(.md/.yml)
+  - privacy_spec(.md/.yml)
+  - privacy_test_cases(.md/.yml)
+  - security_spec(.md/.yml)
+  - security_test_cases(.md/.yml)
+  - risks_spec(.md/.yml)
+  - risks_test_case(.md/.yml)
+  - workflow_v0.8.1(.md/.yml)
+
+EXECUTION NOTES (as implemented)
+- Implemented in phases (ph1..ph12) with per-phase walkthroughs stored under:
+  - af-iclme/layers/ideas/tenant_registration/IP/walkthrough_ph*.md
+- Validated key paths in Docker:
+  - service-gen-api unit tests and runtime smoke checks
+  - service-gen-saas TypeScript compile
+  - Playwright e2e via dedicated playwright-test compose service
+
+KEY CONSTRAINTS FOLLOWED
+- Object-based tenant domain factory + cross-domain facade (`tenant_domain_api`)
+- Tenant domain DB adapter and migrations scaffold/domain tables
+- Real Docker runtime validation before advancing phases
+- Reusable Playwright runner service (playwright-test) added to compose, with assets under vendor/playwright-test
+

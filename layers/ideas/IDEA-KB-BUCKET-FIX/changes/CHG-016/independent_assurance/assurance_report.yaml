@@ -1,0 +1,6 @@
+assurance_report:
+  chg_key: CHG-016
+  verifiers:
+    - Antigravity AI
+  summary: "MinIO bucket creation issue resolved through environment configuration and hardened Task logic."
+  conclusion: "Storage backend is stable and correctly initialized."

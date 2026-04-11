@@ -1,0 +1,21 @@
+{
+    "test_report": {
+        "chg_key": "CHG-006",
+        "status": "passed",
+        "scenarios": [
+            {
+                "name": "Step 1: Service Creation",
+                "result": "passed"
+            },
+            {
+                "name": "Step 2: Chatbot Creation",
+                "result": "passed"
+            },
+            {
+                "name": "Step 5: Deployment",
+                "result": "passed"
+            }
+        ],
+        "coverage": 85.0
+    }
+}

@@ -1,0 +1,18 @@
+id: security-test-cases-create-service
+title: Security Test Cases - Create Service
+test_cases:
+  - id: TC-SEC-SERV-001
+    title: Cross-Tenant Isolation
+    type: negative
+  - id: TC-SEC-SERV-002
+    title: SSRF Blockage
+    type: negative
+  - id: TC-SEC-SERV-003
+    title: Iframe Sandboxing
+    type: positive
+  - id: TC-SEC-SERV-004
+    title: Agent RBAC Enforcement
+    type: negative
+  - id: TC-SEC-SERV-005
+    title: Malware Rejection
+    type: negative

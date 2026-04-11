@@ -1,0 +1,11 @@
+id: risks-test-case-logout-tenant
+title: Risk Test Cases - Tenant Logout
+test_cases:
+  - id: TC-RISK-LOGO-001
+    mitigates: RISK-SEC-2026-LOGO-001
+  - id: TC-RISK-LOGO-002
+    mitigates: RISK-SEC-2026-LOGO-002
+  - id: TC-RISK-LOGO-003
+    mitigates: RISK-SEC-2026-LOGO-003
+  - id: TC-RISK-LOGO-004
+    mitigates: RISK-PRIV-2026-LOGO-004

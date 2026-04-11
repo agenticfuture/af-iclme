@@ -1,0 +1,124 @@
+document:
+  name: privacy-test-cases
+  version: "1.0"
+  derived_from:
+    - privacy-BRD-requirements
+    - privacy-system-requirements
+    - privacy-system_spec-requirements
+  regulatory_framework: PIPEDA
+
+test_categories:
+  consent_management:
+    traceability: Privacy-BRD §5
+    severity: high
+    automated: true
+    evidence_required:
+      - consent_records
+      - audit_log
+    tests:
+      - id: TC-PR-CONS-001
+        description: Consent recording validation
+      - id: TC-PR-CONS-002
+        description: Consent withdrawal enforcement
+      - id: TC-PR-CONS-003
+        description: Ledger immutability validation
+
+  data_subject_rights:
+    traceability: Privacy-BRD §11
+    severity: high
+    automated: partially
+    evidence_required:
+      - export_log
+      - deletion_log
+    tests:
+      - id: TC-PR-DSR-001
+      - id: TC-PR-DSR-002
+      - id: TC-PR-DSR-003
+
+  retention:
+    traceability: Privacy-System-Spec Retention Engine
+    severity: high
+    automated: true
+    evidence_required:
+      - retention_logs
+    tests:
+      - id: TC-PR-RET-001
+      - id: TC-PR-RET-002
+
+  ai_privacy:
+    traceability: Privacy-System-Spec AI Gateway
+    severity: critical
+    automated: true
+    evidence_required:
+      - ai_invocation_logs
+      - masking_logs
+    tests:
+      - id: TC-PR-AI-001
+      - id: TC-PR-AI-002
+      - id: TC-PR-AI-003
+
+  tenant_isolation:
+    severity: critical
+    automated: true
+    evidence_required:
+      - access_logs
+    tests:
+      - id: TC-PR-TEN-001
+      - id: TC-PR-TEN-002
+
+  residency:
+    severity: high
+    automated: partially
+    evidence_required:
+      - residency_events
+    tests:
+      - id: TC-PR-RES-001
+
+  breach_detection:
+    severity: critical
+    automated: true
+    evidence_required:
+      - breach_records
+      - alert_logs
+    tests:
+      - id: TC-PR-BRE-001
+      - id: TC-PR-BRE-002
+
+  audit_logging:
+    severity: high
+    automated: true
+    evidence_required:
+      - immutable_logs
+    tests:
+      - id: TC-PR-LOG-001
+      - id: TC-PR-LOG-002
+
+pipeda_mapping:
+  accountability:
+    - audit_logging
+  identifying_purposes:
+    - consent_management
+  consent:
+    - consent_management
+  limiting_collection:
+    - ai_privacy
+  limiting_use:
+    - retention
+  accuracy:
+    - data_subject_rights
+  safeguards:
+    - tenant_isolation
+  openness:
+    - residency
+  access:
+    - data_subject_rights
+  challenging_compliance:
+    - breach_detection
+
+validation_required:
+  - cross_tenant_isolation_test
+  - consent_enforcement_test
+  - retention_enforcement_test
+  - ai_masking_test
+  - breach_simulation_test
+  - audit_log_integrity_test

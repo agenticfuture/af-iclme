@@ -1,0 +1,20 @@
+architecture_design:
+  components:
+    - name: "CreateServiceCapability"
+      type: "Backend Capability"
+      interactions:
+        - target: "Service Table"
+          action: "INSERT (DRAFT)"
+        - target: "Chatbot Table"
+          action: "INSERT"
+        - target: "Deployment Table"
+          action: "INSERT"
+    - name: "FrontendWizard"
+      type: "Next.js Component"
+      interactions:
+        - target: "CreateServiceCapability"
+          action: "API Calls (Step-by-step)"
+  data_flow:
+    - "Wizard Step 1 -> API -> DB:Service (DRAFT) -> Return service_id"
+    - "Wizard Step 2 -> API -> DB:Chatbot -> Return chatbot_id"
+    - "Wizard Step 5 -> API -> DB:Service (ACTIVE) -> Redirect"

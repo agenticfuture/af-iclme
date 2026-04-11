@@ -1,0 +1,6 @@
+compliance_report:
+  chg_key: CHG-014
+  controls_verified:
+    - ID: ARCH-MOD-001
+      status: compliant
+      evidence: "Ingestion logic refactored into modular workflows orchestrated by IngestWorkflowOrchestrator."

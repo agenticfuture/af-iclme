@@ -1,0 +1,6 @@
+post_deployment_review:
+  chg_key: CHG-015
+  outcome: success
+  learnings:
+    - "Prefect sub-flows provide granular visibility into multi-source ingestion batches."
+    - "Wrapping core tasks with retries transparently handles transient network issues with object storage."

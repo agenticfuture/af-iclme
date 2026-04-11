@@ -1,0 +1,12 @@
+security_test_cases:
+  domain: Tenant Registration Security
+  version: "1.0"
+  cases:
+    - id: TC-SEC-TEN-REG-001
+      title: Argon2 Password Hashing Verification
+    - id: TC-SEC-TEN-REG-002
+      title: Registration Rate Limiting
+    - id: TC-SEC-TEN-REG-003
+      title: SQL Injection via Organization Name
+    - id: TC-SEC-TEN-REG-004
+      title: Audit Log Verification

@@ -1,0 +1,56 @@
+workflow:
+  name: Tenant Registration Workflow
+  id: WF-TEN-REG
+  version: "1.0"
+  trigger: "PUBLIC_REGISTRATION_FORM_SUBMISSION"
+  
+  stages:
+    - step: 1
+      name: Pre-Validation
+      actions:
+        - captcha_verification
+        - ip_rate_limiting
+        - consent_checkbox_check
+        
+    - step: 2
+      name: Input_Sanitization
+      actions:
+        - parameter_binding_enforcement
+        - password_complexity_validation
+        
+    - step: 3
+      name: Persistence
+      actions:
+        - create_tenant_uuid
+        - create_admin_user
+        - argon2_password_hashing
+        - status_set_pending_verification
+        
+    - step: 4
+      name: Privacy_Handshake
+      actions:
+        - record_consent_ledger
+        
+    - step: 5
+      name: Verification_Signal
+      actions:
+        - generate_high_entropy_token
+        - send_verification_email_async
+        
+    - step: 6
+      name: Activation
+      actions:
+        - validate_token_expiry
+        - update_tenant_status_active
+        - enforce_mfa_on_login
+        
+  state_transitions:
+    - from: null
+      to: PENDING_VERIFICATION
+      event: REGISTRATION_SUBMITTED
+    - from: PENDING_VERIFICATION
+      to: ACTIVE
+      event: EMAIL_VERIFIED
+    - from: PENDING_VERIFICATION
+      to: DELETED
+      event: RETENTION_TIMEOUT_48H

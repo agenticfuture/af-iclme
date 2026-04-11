@@ -1,0 +1,15 @@
+
+from sqlalchemy import Column, Text
+from sqlalchemy.dialects.postgresql import UUID, BYTEA
+from db.base import Base
+from db.models.mixins import LifecycleMixin
+
+class Message(Base, LifecycleMixin):
+    __tablename__ = "messages"
+    __table_args__ = {"schema": "conversation"}
+
+    id = Column(UUID, primary_key=True)
+    tenant_id = Column(UUID, nullable=False)
+    sender_user_id = Column(UUID, nullable=True)
+    content_encrypted = Column(BYTEA, nullable=False)
+    language = Column(Text)

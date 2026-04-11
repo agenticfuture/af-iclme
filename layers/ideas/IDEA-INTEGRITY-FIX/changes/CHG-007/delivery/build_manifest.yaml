@@ -1,0 +1,5 @@
+build_manifest:
+  chg_key: CHG-007
+  artifacts:
+    - capabilities/db/seeds/seed_default.py
+  timestamp: "2026-02-17T18:27:00Z"

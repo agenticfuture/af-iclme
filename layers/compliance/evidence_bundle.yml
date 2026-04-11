@@ -1,0 +1,17 @@
+meta:
+  artifact_type: evidence_bundle
+  layer: L6
+
+linked_artifacts:
+  - test_report
+  - security_scan
+  - sbom
+  - dpia_report
+  - deployment_manifest
+
+controls_satisfied:
+  - SOC2-CC6.1
+  - GDPR-ART-32
+
+signature: SHA256:abc123
+status: compliant

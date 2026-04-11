@@ -1,0 +1,26 @@
+requirement_spec:
+  title: Tenant Registration
+  version: "1.0"
+  traceability: BR-TEN-001
+  status: draft
+  functional_requirements:
+    - id: REQ-TEN-REG-001
+      description: Register Tenant Account
+      rules:
+        - unique_uuid
+        - initial_admin_assignment
+        - mandatory_email_verification
+    - id: REQ-TEN-REG-002
+      description: Administrator Role Assignment
+    - id: REQ-TEN-REG-003
+      description: Email Verification Workflow
+  non_functional_requirements:
+    - id: NFR-TEN-REG-001
+      target: service_creation_less_than_1s
+    - id: NFR-TEN-REG-002
+      security_policy: argon2_bcrypt_enforcement
+  acceptance_criteria:
+    - db_persistence_confirmed
+    - admin_role_assigned
+    - verification_email_triggered
+    - duplicate_email_prevention

@@ -1,0 +1,22 @@
+meta:
+  artifact_type: change_spec
+
+change:
+  chg_key: CHG-009
+  idea_key: IDEA-WIZARD-ADVANCED
+  title: wizard-kb-integration-and-deployment-finalization
+  impacted_layers:
+    - L1: Product (Wizard UI)
+    - L4: Data & Privacy (MinIO Storage)
+    - L8: Intent & Idea (Flow Logic)
+  required_artifacts:
+    - change_spec.yaml
+    - design_doc.md
+    - architecture.md
+  security_requirements:
+    - tenant_isolation_on_storage
+  rollback_strategy:
+    - Revert `page.tsx`.
+    - Delete newly created `ingest` capability.
+  success_criteria:
+    - End-to-end wizard completion with data in DB and MinIO.

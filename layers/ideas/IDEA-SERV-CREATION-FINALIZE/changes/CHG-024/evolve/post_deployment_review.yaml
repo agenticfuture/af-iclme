@@ -1,0 +1,11 @@
+meta:
+  artifact_type: post_deployment_review
+  layer: L8
+
+change_id: CHG-024
+observations:
+  - Scoped embed routes remove immediate 404s from playground and success preview URLs.
+  - Context propagation now explicitly includes service_id, tenant_id, org_id.
+next_improvements:
+  - Add signed context token for embed requests to prevent tampering.
+  - Add integration tests for multi-tenant service isolation in bot embed route.

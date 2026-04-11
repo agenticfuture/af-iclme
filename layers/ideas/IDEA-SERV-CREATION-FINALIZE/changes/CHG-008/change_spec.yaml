@@ -1,0 +1,23 @@
+meta:
+  artifact_type: change_spec
+
+change:
+  chg_key: CHG-008
+  idea_key: IDEA-SERV-CREATION-FINALIZE
+  title: wizard multi-step persistence and deployment integration
+  impacted_layers:
+    - L1: Product (wizard UI, API handover)
+    - L2: Delivery (deployment trigger)
+    - L3: Quality Assurance (full flow testing)
+  required_artifacts:
+    - change_spec.yaml
+    - design_doc.md
+    - test_plan.yaml
+  security_requirements:
+    - multi-tenant_isolation
+  rollback_strategy:
+    - Revert `page.tsx` wizard logic.
+  success_criteria:
+    - IDs persisted across all 5 steps.
+    - Actual DB records created at each step.
+    - Redirect to playground works.

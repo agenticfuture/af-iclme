@@ -1,0 +1,6 @@
+
+routes:
+  - method: POST
+    path: /tenants/register
+    workflow: register_tenant
+

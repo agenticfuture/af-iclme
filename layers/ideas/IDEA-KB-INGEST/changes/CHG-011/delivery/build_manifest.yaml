@@ -1,0 +1,7 @@
+build_manifest:
+  chg_key: CHG-011
+  artifacts:
+    - capabilities/knowledge_base/caps/ingest/
+    - ui-apps/service-gen-saas/app/dashboard/services/new/page.tsx
+    - app/ingress/api/pyproject.toml
+  timestamp: "2026-02-17T19:35:00Z"

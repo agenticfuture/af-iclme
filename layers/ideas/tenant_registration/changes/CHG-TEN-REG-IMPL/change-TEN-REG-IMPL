@@ -1,0 +1,69 @@
+ID: CHG-TEN-REG-IMPL
+NAME: Tenant Registration Domain Implementation (Phases 1-12)
+
+DESCRIPTION
+- Implemented the `tenant` domain registration capability as an object-based domain module with a cross-domain facade (`tenant_domain_api`), mounted API routes, DB-backed registration persistence, DB-backed tenant/org/user projection, Keycloak and OPA adapters (real-mode capable), replay-protected webhook verification, and SaaS onboarding integration.
+- Added test coverage (unit + real-adapter integration) and a reusable Playwright e2e runner service for SaaS onboarding validation.
+
+PRIMARY IMPLEMENTED AREAS
+
+1) Tenant Domain Core
+- `capabilities/tenant/factory.py`
+- `capabilities/tenant/contracts/*`
+- `capabilities/tenant/shared/*`
+- `capabilities/tenant/caps/*`
+
+2) Tenant Domain Persistence
+- `capabilities/tenant/adapters/db/*`
+- migration scaffolds and `0001_create_tenant_domain_tables.py`
+- SQL store with registration/evidence persistence and webhook receipt replay protection
+- core identity projection repository (`core.tenants`, `core.organizations`, `core.users`, `private.user_pii`)
+
+3) IdP / Policy Integrations
+- `capabilities/tenant/adapters/keycloak/*` (real admin mode support)
+- `capabilities/tenant/adapters/opa/*` (real OPA HTTP decisions)
+- OPA policy files under `capabilities/tenant/policies/tenant_registration/*.rego`
+- local OPA compose wiring and policies under `/policies/*.rego`
+
+4) API Runtime Integration
+- `app/ingress/api/main.py` mounted tenant domain routes into real API runtime
+
+5) SaaS Integration
+- `ui-apps/service-gen-saas/lib/tenant-registration-client.ts`
+- onboarding create/verify server actions wired to tenant API endpoints
+
+6) E2E Test Infrastructure
+- `ui-apps/service-gen-saas/playwright.config.ts`
+- `ui-apps/service-gen-saas/tests/e2e/tenant-onboarding.spec.ts`
+- `docker-compose.generated.yml` new `playwright-test` service
+- `vendor/playwright-test/*` persistent runner assets/caches
+
+VALIDATION SUMMARY
+
+1. API Docker runtime validations
+- tenant unit tests passed (final run: 16 passed)
+- real adapter integration tests passed (OPA + Keycloak): 2 passed
+- live tenant flow validated against mounted API:
+  - register -> webhook verify -> active status
+- DB persistence verified in Postgres for:
+  - tenant_reg registration/evidence tables
+  - core tenant/org/user projection rows
+  - private user_pii row
+
+2. SaaS validations
+- TypeScript compile succeeded in `service-gen-saas` container
+- onboarding actions integrated with tenant-domain API endpoints
+
+3. E2E validations
+- Playwright onboarding e2e passed via `playwright-test` service:
+  - `1 passed (1.2m)`
+
+KNOWN LIMITATIONS / FOLLOW-UPS
+- Tenant domain migration execution in a fully isolated production migration pipeline is scaffolded but not yet wired to a dedicated domain migration job in compose/k8s.
+- Webhook validator is HMAC-based skeleton with realm/group checks; production mTLS and cloud secret rotation runbooks should be hardened further.
+- Encryption uses Fernet utility with env key support; production KMS-backed key management/rotation remains a follow-up.
+
+RELATED WALKTHROUGHS
+- Phase walkthroughs:
+  - `af-iclme/layers/ideas/tenant_registration/IP/walkthrough_ph1.md` ... `walkthrough_ph12.md`
+

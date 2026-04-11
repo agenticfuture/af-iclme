@@ -1,0 +1,38 @@
+meta:
+  artifact_type: change_spec
+  layer: L8
+
+change:
+  change_key: SG-CHG-001
+  description: Implement AI summarization for attachments
+  affected_layers:
+    - L1
+    - L3
+    - L4
+    - L5
+    - L6
+
+requirements:
+  functional:
+    - Accept file upload
+    - Generate summary
+  non_functional:
+    - Latency < 300ms
+    - Error rate < 1%
+
+required_artifacts:
+  L1:
+    - code_diff
+    - test_definitions
+  L3:
+    - test_reports
+  L4:
+    - dpia_report
+  L5:
+    - security_scan
+    - sbom
+  L6:
+    - evidence_bundle
+
+rollback_strategy:
+  method: revert_commit

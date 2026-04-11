@@ -1,0 +1,14 @@
+change_id: CHG-001
+timestamp: 2026-02-16T18:00:00Z
+artifacts:
+  - name: service-gen-backend
+    version: 1.0.1-chg001
+    source_commit: sha123456
+    docker_image: service-gen-backend:1.0.1
+  - name: service-gen-frontend
+    version: 1.0.1-chg001
+    source_commit: sha123456
+    docker_image: service-gen-frontend:1.0.1
+configuration:
+  env_vars:
+    - SERVICE_DOMAIN_ENABLED=true

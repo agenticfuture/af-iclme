@@ -1,0 +1,6 @@
+compliance_report:
+  chg_key: CHG-017
+  controls_verified:
+    - ID: DEPS-001
+      status: compliant
+      evidence: "Container dependencies synchronized via UV inside the target container."

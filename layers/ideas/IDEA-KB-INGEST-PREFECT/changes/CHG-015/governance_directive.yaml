@@ -1,0 +1,15 @@
+meta:
+  artifact_type: governance_directive
+
+governance:
+  chg_key: CHG-015
+  risk_level: low
+  approvals_required:
+    - tech_lead
+  autonomy_scope:
+    - orchestration_logic
+  compliance_controls:
+    - ID: MONITOR-001
+      description: "Critical data ingestion MUST be orchestrated via Prefect for auditability."
+    - ID: RETRY-001
+      description: "Network tasks (MinIO) MUST implement at least 3 retries."

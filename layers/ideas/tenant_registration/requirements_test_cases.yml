@@ -1,0 +1,20 @@
+test_cases:
+  domain: Tenant Registration
+  version: "1.0"
+  cases:
+    - id: TC-TEN-REG-001
+      title: Successful Tenant Registration
+      requirement: REQ-TEN-REG-001
+      type: positive
+    - id: TC-TEN-REG-002
+      title: Duplicate Email Prevention
+      requirement: REQ-TEN-REG-001
+      type: negative
+    - id: TC-TEN-REG-003
+      title: Password Complexity Validation
+      requirement: NFR-TEN-REG-002
+      type: negative
+    - id: TC-TEN-REG-004
+      title: Email Verification Trigger
+      requirement: REQ-TEN-REG-003
+      type: positive

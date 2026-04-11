@@ -1,0 +1,6 @@
+compliance_report:
+  chg_key: CHG-007
+  controls_verified:
+    - ID: DATA-INT-002
+      status: compliant
+      evidence: "Default tenant and org IDs exist in core schema."

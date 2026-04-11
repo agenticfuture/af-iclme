@@ -1,0 +1,6 @@
+compliance_report:
+  chg_key: CHG-018
+  controls_verified:
+    - ID: VALIDATE-IN-001
+      status: compliant
+      evidence: "Implemented client-side and server-side validation for ingestion inputs."

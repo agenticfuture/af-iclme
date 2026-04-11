@@ -1,0 +1,15 @@
+meta:
+  artifact_type: idea
+
+idea:
+  idea_key: IDEA-KB-STORAGE-REPAIR
+  title: Advanced Storage & Dependency Synchronization
+  description: Use UV to sync container dependencies and fix structural code errors to restore ingestion capability.
+  domains:
+    - Infrastructure
+    - Storage
+    - DevOps
+  types:
+    - maintenance
+  priority: critical
+  spiral_stage: IDEA

@@ -1,0 +1,24 @@
+meta:
+  artifact_type: idea
+
+idea:
+  idea_key: SG-IDEA-001
+  title: AI Email Attachment Summarization
+  description: Allow summarization of uploaded attachments.
+  prompt_id: 
+  prompt_refs:
+  prompt_description:
+  prompt_input_content_that_produced_the_idea:
+  domains:
+    - product
+    - AI
+    - data
+  types:
+    - feature
+  priority: high
+  initial_risk: medium
+  spiral_stage: IDEA
+
+success_metrics:
+  - metric: user_engagement
+    target: "> 40%"

@@ -1,0 +1,16 @@
+meta:
+  artifact_type: compliance_report
+  layer: L6
+
+change_id: CHG-021
+status: passed
+checks:
+  - name: required_execution_context
+    result: passed
+    evidence: commands executed through compose service context.
+  - name: required_venv_path
+    result: passed
+    evidence: /app/.venv/bin/uv returned version 0.9.21.
+  - name: schema_alignment
+    result: passed
+    evidence: deployments.url verified in postgres table description.

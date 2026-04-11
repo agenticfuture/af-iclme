@@ -1,0 +1,18 @@
+{
+    "test_report": {
+        "chg_key": "CHG-010",
+        "status": "passed",
+        "scenarios": [
+            {
+                "name": "Step 4: Channels UI",
+                "result": "passed",
+                "details": "Add Channel button is disabled and says Coming Soon."
+            },
+            {
+                "name": "Step 5: Agent Assignment UI",
+                "result": "passed",
+                "details": "Agent Assignment title has badge, form is blurred, inputs are disabled, and Add Agent button is disabled."
+            }
+        ]
+    }
+}

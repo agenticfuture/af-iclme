@@ -1,0 +1,62 @@
+meta:
+  artifact_type: change_spec
+  layer: L8
+
+change:
+  change_key: CHG-020
+  description: Fix deployment failure on Finish by persisting deployment URL in DB and validating tenant-service-chatbot consistency.
+  affected_layers:
+    - L0
+    - L1
+    - L2
+    - L3
+    - L4
+    - L5
+    - L6
+    - L7
+    - L8
+
+requirements:
+  functional:
+    - Keep frontend service and bot creation steps unchanged and ID-producing.
+    - Persist deployment URL (bot.servicegen.local path) in service.deployments.
+    - Return deployment URL from deploy API response.
+    - Ensure deployment references a chatbot that belongs to the same tenant and service.
+  non_functional:
+    - No destructive schema changes.
+    - Backward-compatible additive DB migration.
+
+required_artifacts:
+  L1:
+    - code_changes
+    - walkthrough
+  L2:
+    - build_manifest
+  L3:
+    - qa_test_report
+  L4:
+    - context_isolation_validation
+  L5:
+    - deployment_input_validation
+  L6:
+    - compliance_report
+  L7:
+    - governance_directive
+  L8:
+    - this_change_spec
+
+required_tests:
+  - Python syntax compile for changed backend files.
+  - Manual API flow check for create service -> create chatbot -> deploy.
+  - Migration application check for deployment URL column.
+
+rollback_strategy:
+  method: revert_commit
+  notes:
+    - Revert migration 0002_add_deployment_url if required.
+    - Revert create_service deployment logic changes if deployment contract needs reset.
+
+success_criteria:
+  - Deploy endpoint no longer fails with SQLAlchemy insert error when writing deployment URL.
+  - Finish flow receives success and URL from backend.
+  - Frontend still creates service and chatbot IDs in steps 1 and 2.

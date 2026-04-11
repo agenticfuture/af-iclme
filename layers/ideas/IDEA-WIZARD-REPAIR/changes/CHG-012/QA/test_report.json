@@ -1,0 +1,23 @@
+{
+    "test_report": {
+        "chg_key": "CHG-012",
+        "status": "passed",
+        "scenarios": [
+            {
+                "name": "Initial State Recovery",
+                "result": "passed",
+                "details": "serviceId and chatbotId are correctly initialized from sessionStorage on first render."
+            },
+            {
+                "name": "State-Session Synchronization",
+                "result": "passed",
+                "details": "useEffect ensures sessionStorage stays in sync with React state."
+            },
+            {
+                "name": "Duplicate Creation Guard",
+                "result": "passed",
+                "details": "Step 1 and 2 skip POST requests if IDs are already present in state."
+            }
+        ]
+    }
+}

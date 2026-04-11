@@ -1,0 +1,14 @@
+meta:
+  artifact_type: governance_directive
+
+governance:
+  chg_key: CHG-007
+  risk_level: low
+  approvals_required:
+    - automated
+  autonomy_scope:
+    - database_seeding
+  compliance_controls:
+    - data_integrity
+  audit_requirements:
+    - log_seeding_execution

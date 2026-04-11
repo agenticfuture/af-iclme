@@ -1,0 +1,10 @@
+{
+    "event": "governance.assessed",
+    "change_id": "CHG-SERV-FIX-DETAIL",
+    "idea_id": "IDEA-SERV-FIX-DETAIL",
+    "timestamp": "2026-02-18T10:10:00Z",
+    "metadata": {
+        "source": "meta-prompt",
+        "layer": "L7"
+    }
+}

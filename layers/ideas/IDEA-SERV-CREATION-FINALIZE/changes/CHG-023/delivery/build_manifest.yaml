@@ -1,0 +1,10 @@
+meta:
+  artifact_type: build_manifest
+  layer: L2
+
+change_id: CHG-023
+status: success
+components_changed:
+  - ui-apps/service-gen-saas/app/dashboard/services/new/page.tsx
+summary:
+  - finish redirect now targets playground route

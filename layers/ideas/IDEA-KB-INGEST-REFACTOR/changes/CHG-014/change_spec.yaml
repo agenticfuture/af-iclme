@@ -1,0 +1,18 @@
+meta:
+  artifact_type: change_spec
+
+change:
+  chg_key: CHG-014
+  idea_key: IDEA-KB-INGEST-REFACTOR
+  title: Implement Workflow-driven Ingestion
+  impacted_layers:
+    - L1: Product (Backend Codebase)
+  required_artifacts:
+    - architecture.md
+    - design_doc.md
+    - walkthrough.md
+  security_requirements: []
+  rollback_strategy:
+    - Revert `capabilities/knowledge_base/caps/ingest/` to previous state.
+  success_criteria:
+    - Successful ingestion of files and URLs via the new workflow structure.

@@ -1,0 +1,28 @@
+{
+    "test_report": {
+        "chg_key": "CHG-018",
+        "status": "passed",
+        "scenarios": [
+            {
+                "name": "Granular API Routing",
+                "result": "passed",
+                "details": "/ingest/file and /ingest/url endpoints are correctly routed to the handler."
+            },
+            {
+                "name": "Atomic Sync Logic",
+                "result": "passed",
+                "details": "Frontend correctly iterates over data sources and updates individual status (pending/success/error)."
+            },
+            {
+                "name": "UI Validation",
+                "result": "passed",
+                "details": "'Add Data Source' button is disabled for empty inputs; 'Next' requires at least one source."
+            },
+            {
+                "name": "Storage Connectivity",
+                "result": "passed",
+                "details": "Restored minio:9000 endpoint for reliable internal communication."
+            }
+        ]
+    }
+}

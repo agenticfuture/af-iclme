@@ -1,0 +1,16 @@
+id: requirements-test-cases-logout-tenant
+title: Functional Test Cases - Tenant Logout
+version: "1.0"
+test_cases:
+  - id: TC-LOGOUT-FUN-001
+    title: Standard Logout
+    priority: high
+  - id: TC-LOGOUT-FUN-002
+    title: Back Button Check
+    priority: medium
+  - id: TC-LOGOUT-FUN-003
+    title: Multi-Tab Logout
+    priority: high
+  - id: TC-LOGOUT-FUN-004
+    title: Token Invalidation
+    priority: critical

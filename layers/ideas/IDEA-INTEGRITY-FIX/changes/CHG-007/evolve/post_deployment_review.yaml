@@ -1,0 +1,5 @@
+post_deployment_review:
+  chg_key: CHG-007
+  outcome: success
+  learnings:
+    - critical: "Bootstrap scripts must include ALL entities referenced in hardcoded API defaults."

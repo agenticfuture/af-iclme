@@ -1,0 +1,19 @@
+meta:
+  artifact_type: change_spec
+
+change:
+  chg_key: CHG-015
+  idea_key: IDEA-KB-INGEST-PREFECT
+  title: Prefect-driven-ingestion-orchestration
+  impacted_layers:
+    - L1: Product (Backend Orchestration)
+    - L2: Delivery (Monitoring)
+  required_artifacts:
+    - architecture.md
+    - walkthrough.md
+  security_requirements: []
+  rollback_strategy:
+    - Revert Prefect decorators in `capabilities/knowledge_base/caps/ingest/`.
+  success_criteria:
+    - Ingestion success is reported by Prefect flow state.
+    - Individual task failures are visible in logs.

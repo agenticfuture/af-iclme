@@ -1,0 +1,7 @@
+build_manifest:
+  chg_key: CHG-018
+  artifacts:
+    - capabilities/knowledge_base/caps/ingest/api.py
+    - capabilities/knowledge_base/caps/ingest/handler.py
+    - ui-apps/service-gen-saas/app/dashboard/services/new/page.tsx
+  timestamp: "2026-02-17T21:50:00Z"

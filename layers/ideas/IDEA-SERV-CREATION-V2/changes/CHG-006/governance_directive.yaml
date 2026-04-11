@@ -1,0 +1,18 @@
+meta:
+  artifact_type: governance_directive
+
+governance:
+  chg_key: CHG-006
+  risk_level: medium
+  approvals_required:
+    - technical_architect
+    - security_officer
+  autonomy_scope:
+    - code_implementation
+    - database_schema_fix
+  compliance_controls:
+    - data_integrity_check
+    - cors_policy_verification
+  audit_requirements:
+    - trace_api_calls
+    - verify_db_records

@@ -1,0 +1,22 @@
+meta:
+  artifact_type: change_spec
+
+change:
+  chg_key: CHG-011
+  idea_key: IDEA-KB-INGEST
+  title: kb-wizard-ingestion-minio
+  impacted_layers:
+    - L1: Product (Wizard UI)
+    - L4: Data & Privacy (Storage Partitioning)
+    - L0: Runtime (MinIO Integration)
+  required_artifacts:
+    - design_doc.md
+    - architecture.md
+  security_requirements:
+    - storage_encryption_at_rest
+    - tenant_isolation
+  rollback_strategy:
+    - Revert `page.tsx`.
+    - Drop `ingest` capability.
+  success_criteria:
+    - Files successfully stored and accessible by chatbot.

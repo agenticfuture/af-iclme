@@ -1,0 +1,27 @@
+meta:
+  artifact_type: api_spec
+  layer: L1
+  change_ref: CHG-001
+
+endpoints:
+  - path: /api/service/onboard/service
+    method: POST
+    description: Create a new service or save a draft.
+    request_body:
+      - serviceName: string
+      - department: string
+      - botName: string
+      - description: string
+      - prompt: string
+      - agentId: string (optional)
+      - channels_json: JSON string
+      - dataSources_json: JSON string
+      - files: UploadFile[]
+    response:
+      - 200 OK: { id: string, status: string }
+      - 400 Bad Request: Validation Error
+
+  - path: /api/service/{id}
+    method: PATCH
+    description: Update an existing service (used for drafts/edits).
+    request_body: same as POST but partial

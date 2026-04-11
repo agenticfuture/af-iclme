@@ -1,0 +1,20 @@
+meta:
+  artifact_type: governance_directive
+  layer: L7
+
+risk_assessment:
+  level: low
+
+constraints:
+  - preserve_service_and_bot_creation_steps
+  - frontend_only_targeted_change
+
+approvals:
+  required: true
+  approvers:
+    - product_owner
+
+autonomy_scope:
+  allowed_layers:
+    - L1
+  max_risk: low

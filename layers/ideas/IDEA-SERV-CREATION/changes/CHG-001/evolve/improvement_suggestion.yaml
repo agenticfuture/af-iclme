@@ -1,0 +1,10 @@
+suggestion_id: IMPROVE-SERV-001
+source_change: CHG-001
+title: Enhance Service Creation with Templates
+description: |
+  Observation: Users are taking average 5 mins to configure prompts.
+  Suggestion: Provide pre-built templates for common service types (HR, IT Support).
+impact: High
+effort: Medium
+target_layer: L1 (Product)
+status: proposed

@@ -1,0 +1,13 @@
+id: security-test-cases-login-tenant
+title: Security Test Cases - Tenant Login
+test_cases:
+  - id: TC-SEC-LOGIN-001
+    title: SQLi check
+  - id: TC-SEC-LOGIN-002
+    title: JWT signature validation
+  - id: TC-SEC-LOGIN-003
+    title: MFA enforcement
+  - id: TC-SEC-LOGIN-004
+    title: Rate limiting (429)
+  - id: TC-SEC-LOGIN-005
+    title: Secure Headers

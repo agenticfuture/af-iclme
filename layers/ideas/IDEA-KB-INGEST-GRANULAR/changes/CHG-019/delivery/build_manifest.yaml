@@ -1,0 +1,8 @@
+build_manifest:
+  chg_key: CHG-019
+  artifacts:
+    - capabilities/knowledge_base/caps/ingest/workflow.py
+    - capabilities/knowledge_base/caps/ingest/workflows/file.py
+    - capabilities/knowledge_base/caps/ingest/workflows/url.py
+    - ui-apps/service-gen-saas/app/dashboard/services/new/page.tsx
+  timestamp: "2026-02-17T22:05:00Z"

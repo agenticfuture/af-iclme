@@ -1,0 +1,16 @@
+strategy: canary
+steps:
+  - step: 1
+    weight: 10%
+    duration: 10m
+    validation: "error_rate < 1%"
+  - step: 2
+    weight: 50%
+    duration: 30m
+    validation: "error_rate < 1%"
+  - step: 3
+    weight: 100%
+    duration: 1h
+    validation: "error_rate < 1%"
+rollback_on_failure: true
+current_status: completed

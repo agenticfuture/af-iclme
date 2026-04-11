@@ -1,0 +1,11 @@
+meta:
+  artifact_type: post_deployment_review
+  layer: L8
+
+change_id: CHG-021
+observations:
+  - Runtime command path requirement (/app/.venv/bin/uv) is valid in service-gen-api.
+  - Compose warns that top-level `version` key is obsolete.
+improvement_suggestions:
+  - Remove `version` field from compose file to reduce warning noise.
+  - Set ENCRYPTION_KEY in runtime env to avoid blank default warning.

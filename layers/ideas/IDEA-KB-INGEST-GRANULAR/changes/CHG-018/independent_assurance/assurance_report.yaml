@@ -1,0 +1,6 @@
+assurance_report:
+  chg_key: CHG-018
+  verifiers:
+    - Antigravity AI
+  summary: "Pivot to granular ingestion model completed. Reliability issues in MinIO storage and silent failures in the wizard are resolved through atomic orchestration."
+  conclusion: "The Knowledge Base ingestion pipeline is now high-fidelity and user-validated."

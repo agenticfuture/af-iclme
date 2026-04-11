@@ -1,0 +1,9 @@
+{
+    "event": "idea.created",
+    "idea_id": "IDEA-SERV-FIX-DETAIL",
+    "timestamp": "2026-02-18T09:55:00Z",
+    "metadata": {
+        "source": "meta-prompt",
+        "layer": "L8"
+    }
+}

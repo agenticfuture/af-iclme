@@ -1,0 +1,21 @@
+id: security-spec-login-tenant
+title: Security Specification - Tenant Login
+architecture: zero_trust
+specifications:
+  - id: SEC-LOGIN-001
+    title: IAM controls
+    algorithm: RS256
+    hash: Argon2
+    mfa: TOTP
+  - id: SEC-LOGIN-002
+    title: Network
+    tls: TLS-1.2+
+    hsts: true
+  - id: SEC-LOGIN-003
+    title: Isolation
+    method: RLS
+    validation: JWT_tenant_match
+  - id: SEC-LOGIN-004
+    title: Rate Limiting
+    limit_per_ip_per_min: 10
+    lockout_threshold: 5

@@ -1,0 +1,5 @@
+build_manifest:
+  chg_key: CHG-012 (v2)
+  artifacts:
+    - ui-apps/service-gen-saas/app/dashboard/services/new/page.tsx
+  timestamp: "2026-02-17T19:50:00Z"

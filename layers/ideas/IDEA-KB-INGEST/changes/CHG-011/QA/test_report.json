@@ -1,0 +1,23 @@
+{
+    "test_report": {
+        "chg_key": "CHG-011",
+        "status": "passed",
+        "scenarios": [
+            {
+                "name": "Multi-file Upload (Frontend)",
+                "result": "passed",
+                "details": "Wizard Step 3 correctly allows selection and batch addition of multiple files."
+            },
+            {
+                "name": "Structured Multipart API",
+                "result": "passed",
+                "details": "Backend receives metadata JSON and binary file list correctly."
+            },
+            {
+                "name": "MinIO Partitioning",
+                "result": "passed",
+                "details": "Files are stored under /{tenant}/{org}/{service}/ layout."
+            }
+        ]
+    }
+}

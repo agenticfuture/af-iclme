@@ -1,0 +1,31 @@
+meta:
+  artifact_type: governance_directive
+  layer: L7
+
+risk_assessment:
+  level: medium
+  rationale:
+    - Touches persistence path used during production-like onboarding flow.
+
+constraints:
+  - additive_migration_only
+  - preserve_existing_frontend_id_generation_steps
+  - strict_tenant_service_chatbot_binding_validation
+
+approvals:
+  required: true
+  approvers:
+    - service_owner
+    - db_owner
+
+autonomy_scope:
+  allowed_layers:
+    - L1
+    - L2
+    - L3
+  max_risk: medium
+
+mandatory_controls:
+  - migration_review
+  - deploy_api_contract_review
+  - regression_check_for_wizard_steps

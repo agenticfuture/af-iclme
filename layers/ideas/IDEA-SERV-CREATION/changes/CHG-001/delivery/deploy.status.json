@@ -1,0 +1,6 @@
+{
+    "event": "deploy.success",
+    "change_id": "CHG-001",
+    "timestamp": "2026-02-16T18:15:00Z",
+    "details": "Deployment completed successfully to 100% traffic."
+}

@@ -1,0 +1,15 @@
+meta:
+  artifact_type: build_manifest
+  layer: L2
+
+change_id: CHG-020
+status: success
+components_changed:
+  - capabilities/service/caps/create_service/tasks.py
+  - capabilities/service/caps/create_service/workflow.py
+  - capabilities/service/caps/create_service/entities.py
+  - capabilities/service/caps/create_service/api.py
+  - capabilities/db/migrations/versions/0002_add_deployment_url.py
+validation:
+  - command: "PYTHONPYCACHEPREFIX=/tmp/pycache python3 -m py_compile ..."
+    result: passed

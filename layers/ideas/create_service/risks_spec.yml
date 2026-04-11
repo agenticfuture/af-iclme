@@ -1,0 +1,27 @@
+id: risks-spec-create-service
+title: Risk Specification - Create Service
+risks:
+  - id: RISK-SEC-2026-SERV-001
+    title: Prompt Injection
+    category: Security
+    inherent_score: 16
+    mitigations: [Prompt-Validation, Guardrails]
+    residual_score: 4
+  - id: RISK-SEC-2026-SERV-002
+    title: Ingestion Poisoning
+    category: Integrity
+    inherent_score: 15
+    mitigations: [Citations, Approval-Step]
+    residual_score: 6
+  - id: RISK-PRIV-2026-SERV-003
+    title: Draft Over-Retention
+    category: Privacy
+    inherent_score: 6
+    mitigations: [Auto-Cleanup-30d]
+    residual_score: 1
+  - id: RISK-SEC-2026-SERV-004
+    title: SSRF
+    category: Infrastructure
+    inherent_score: 20
+    mitigations: [VPC-Isolation, IP-Blocklist]
+    residual_score: 2

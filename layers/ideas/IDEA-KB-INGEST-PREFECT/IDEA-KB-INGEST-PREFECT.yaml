@@ -1,0 +1,23 @@
+meta:
+  artifact_type: idea
+
+idea:
+  idea_key: IDEA-KB-INGEST-PREFECT
+  title: Prefect-Orchestrated Knowledge Ingestion
+  description: Enhance the ingestion capability with Prefect flows and tasks for superior traceability, monitoring, and error handling.
+  domains:
+    - Knowledge Base
+    - Orchestration
+    - DevOps
+  types:
+    - refactor
+    - monitoring
+  priority: high
+  initial_risk: low
+  spiral_stage: IDEA
+
+success_metrics:
+  - metric: traceability
+    target: "Every source ingestion event is visible in the Prefect dashboard."
+  - metric: reliability
+    target: "Uses Prefect's retry and state management for transient failure handling."

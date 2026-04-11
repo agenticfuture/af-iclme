@@ -1,0 +1,29 @@
+id: requirements-spec-create-service
+title: Requirements Specification - Create Service
+version: "1.0"
+idea: create_service
+workflow:
+  steps:
+    - id: 1
+      title: Service Details
+      entity: Service
+    - id: 2
+      title: Bot Configuration
+      entity: Chatbot
+      features: [ai_suggestion]
+    - id: 3
+      title: Data Sources
+      entities: [Datasource, KnowledgeBase]
+      ingestion: [file, url, s3]
+    - id: 4
+      title: Channels
+      entities: [Channel]
+    - id: 5
+      title: Agent Assignment
+      entities: [HumanAgent]
+deployment:
+  trigger: on_finish
+  actions: [execute_jobs, deploy_runtime, redirect_to_playground]
+playground:
+  modes: [iframe, script]
+  host: bot.servicegen.local

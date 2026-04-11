@@ -1,0 +1,101 @@
+
+---
+
+# 📄 privacy-system_spec-requirements.yml
+
+```yaml
+document:
+  name: privacy-system-spec
+  version: "1.0"
+  framework: PIPEDA
+  applies_to: ServiceGen
+
+architecture:
+  privacy_enforcement_layer:
+    components:
+      - consent_ledger
+      - retention_engine
+      - audit_log_engine
+      - ai_privacy_gateway
+      - tenant_isolation_guard
+      - encryption_kms
+      - breach_detection_engine
+      - residency_controller
+
+consent_ledger:
+  append_only: true
+  hash_chain: true
+  consent_types:
+    - service
+    - marketing
+    - analytics
+    - ai_processing
+
+retention_engine:
+  scheduler: cron
+  deletion_flow:
+    - soft_delete
+    - hard_delete
+    - remove_embeddings
+    - purge_backups
+    - log_event
+
+audit_logging:
+  immutable: true
+  worm_storage: true
+  exportable: true
+
+tenant_isolation:
+  db_filter: required
+  jwt_validation: required
+  cross_tenant_join: prohibited
+  namespace_isolation: required
+
+encryption:
+  in_transit: TLS1.2+
+  at_rest: AES-256-GCM
+  key_rotation_days: 90
+  kms_required: true
+
+ai_privacy:
+  pii_detection: enabled
+  prompt_sanitization: required
+  zero_retention_contract: required
+  inference_logging: mandatory
+
+data_residency:
+  primary_region: Canada
+  cross_border_logging: required
+  residency_events_logged: true
+
+breach_detection:
+  anomaly_monitoring: enabled
+  breach_record_required: true
+  retention_months: 24
+
+backup_controls:
+  encrypted: true
+  retention_aligned: true
+  purge_marker_supported: true
+
+pia_workflow:
+  mandatory_for:
+    - ai_features
+    - cross_border_transfer
+  approval_required: true
+
+monitoring_metrics:
+  - consent_changes_total
+  - retention_deletions_total
+  - ai_calls_masked_total
+  - cross_border_transfers_total
+  - audit_log_access_total
+  - breach_incidents_total
+
+pipeda_mapping:
+  accountability: audit_logging
+  consent: consent_ledger
+  limiting_use: ai_privacy
+  safeguards: encryption
+  access: data_export
+  retention: retention_engine

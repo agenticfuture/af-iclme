@@ -1,0 +1,9 @@
+compliance_report:
+  chg_key: CHG-006
+  controls_verified:
+    - ID: DATA-INT-001
+      status: compliant
+      evidence: "SQLAlchemy foreign keys resolved and verified in logs"
+    - ID: ARCH-SEC-001
+      status: compliant
+      evidence: "CORS policy explicitly allowing local domains"

@@ -1,0 +1,16 @@
+id: privacy-spec-create-service
+title: Privacy Specification - Create Service
+framework: PIPEDA
+controls:
+  - id: PR-SERV-001
+    title: Ingestion Redaction
+    description: Mask PII in knowledge base documents.
+  - id: PR-SERV-002
+    title: Config Security
+    description: Secure prompts and agent credentials.
+  - id: PR-SERV-003
+    title: Audit Trail
+    events: [CREATE_SERVICE, CONFIGURE_BOT, ADD_DATASOURCE]
+data_residency:
+  primary_region: Canada
+  enforced: true
